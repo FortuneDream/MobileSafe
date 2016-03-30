@@ -1,4 +1,4 @@
-package com.example.dell.mobilesafe;
+package com.example.dell.mobilesafe.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.dell.mobilesafe.activity.HomeActivity;
+import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.utils.StreamTools;
 
 import org.json.JSONException;
@@ -22,8 +23,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
@@ -50,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
     //最新apk升级地址
     private String apkurl;
 
-    private Handler handler=new Handler(){
+    private Handler handler=new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
@@ -86,12 +85,10 @@ public class SplashActivity extends AppCompatActivity {
         builder.setPositiveButton("立刻升级", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                /**1.下载apk-Final
-                 * 2.替换安装
-                 */
+
             }
         });
-        builder.show();//这行代码不能忘记
+        builder.show();//这行代码不能忘记!
     }
 
 
