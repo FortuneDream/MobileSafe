@@ -11,10 +11,12 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,10 +58,10 @@ public class SplashActivity extends AppCompatActivity {
     private static final int SHOW_UPDATE_DIALOG = 3;
     private static final int URL_ERROR = 4;
     private static final int NETWORK_ERROR = 5;
-
+    private Message msg;
     private TextView splashVersionTxt;
     private ProgressBar updateApkPrb;
-
+    private long startTime;
     private UpdateInfo updateInfo;
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
@@ -91,6 +93,9 @@ public class SplashActivity extends AppCompatActivity {
         splashVersionTxt.setText("版本名" + getVersionName());
         //软件的升级
         checkVersion();
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f, 1.0f);
+        alphaAnimation.setDuration(1000);
+        findViewById(R.id.rl_splash_root).startAnimation(alphaAnimation);
     }
 
     private void showUpdateDialog() {
@@ -147,11 +152,11 @@ public class SplashActivity extends AppCompatActivity {
 
     private void installApk(File t) {
         //系统内部PackageIntaller
-        Intent intent=new Intent();
+        Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
-        intent.setDataAndType(Uri.fromFile(t),"application/vnd.android.package-archive");
+        intent.setDataAndType(Uri.fromFile(t), "application/vnd.android.package-archive");
         startActivity(intent);
-
+        finish();
     }
 
     //进入主页面
@@ -168,53 +173,49 @@ public class SplashActivity extends AppCompatActivity {
          *            升级，否则进入主页面，是则下载最新APK，替换，安装，启动
          *服务器：最新版本信息：2.0，最新版本描述信息：手机卫士最新版本，下载地址http://.......
          */
-        new Thread() {
-            @Override
-            public void run() {
-                //优先从消息池中取
-                Message msg = Message.obtain();
-                //请求网络，得到最新版本信息，这里可以用开源类OKhttp
-                URL url = null;
-                try {
-                    OkHttpClient okHttpClient=new OkHttpClient();
-                    final Request request=new Request.Builder().url(getString(R.string.serverurl)).build();
-                    Call call=okHttpClient.newCall(request);
-                    call.enqueue(new Callback() {
-                        @Override
-                        public void onFailure(Request request, IOException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(),"获取新版本失败",Toast.LENGTH_SHORT).show();
-                        }
 
-                        @Override
-                        public void onResponse(Response response) throws IOException {
-                            Message msg = Message.obtain();
-                                String result=response.body().string();
-                            //解析JSON
-                            Gson gson = new Gson();
-                            updateInfo = gson.fromJson(result, UpdateInfo.class);
-                            System.out.println("updataInfo.getApkurl:"+updateInfo.getApkurl());
+        startTime = System.currentTimeMillis();
 
-                            if (getVersionName().equals(updateInfo.getVersion())) {
-                                //没有新版本
-                                msg.what = ENTER_HOME;
-                            } else {
-                                msg.what = SHOW_UPDATE_DIALOG;
-                                //弹出升级对话框
-                            }
-                            handler.sendMessage(msg);
-                        }
-                    });
-                }catch (Exception e){
+        //请求网络，得到最新版本信息，
+        URL url = null;
+            OkHttpClient okHttpClient = new OkHttpClient();
+            final Request request = new Request.Builder().url(getString(R.string.serverurl)).build();
+            Call call = okHttpClient.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Request request, IOException e) {
                     e.printStackTrace();
-                } finally {
-                    handler.sendMessage(msg);
+                    Toast.makeText(getApplicationContext(), "获取新版本失败", Toast.LENGTH_SHORT).show();
                 }
 
-            }
-        }.start();
+                @Override
+                public void onResponse(Response response) throws IOException {
+                    msg= Message.obtain();
+                    String result = response.body().string();
+                    //解析JSON
+                    Gson gson = new Gson();
+                    updateInfo = gson.fromJson(result, UpdateInfo.class);
+                    System.out.println("updataInfo.getApkurl:" + updateInfo.getApkurl());
+
+                    if (getVersionName().equals(updateInfo.getVersion())) {
+                        //没有新版本
+                        msg.what = ENTER_HOME;
+                    } else {
+                        msg.what = SHOW_UPDATE_DIALOG;
+                        //弹出升级对话框
+                    }
+                    long endTime = System.currentTimeMillis();
+                    long dTime = endTime - startTime;
+                    if (dTime < 2000) {
+                        SystemClock.sleep(2000 - dTime);
+                    }
+                    handler.sendMessage(msg);
+                }
+            });
+
 
     }
+
 
     private String getVersionName() {
         //包管理器，得到功能清单文件
