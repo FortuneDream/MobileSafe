@@ -9,6 +9,7 @@ import java.io.InputStream;
  */
 public class StreamTools {
     public static String readFromStream(InputStream inputStream) throws IOException {
+        //内存缓存流
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int len = 0;

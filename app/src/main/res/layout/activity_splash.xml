@@ -24,4 +24,13 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         />
+    <ProgressBar
+        android:id="@+id/prb_updateapk"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:progress="0"
+        android:visibility="invisible"/>
 </RelativeLayout>

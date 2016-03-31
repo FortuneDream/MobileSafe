@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="serverurl">http://192.168.1.183</string>
+    <string name="serverurl">http://192.168.56.1/info.html</string>
+    <string name="downloadapk">http://192.168.56.1/mobilesafe2.0.apk</string>
 </resources>
