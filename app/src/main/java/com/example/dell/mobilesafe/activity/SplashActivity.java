@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageInstaller;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
@@ -23,10 +22,6 @@ import android.widget.Toast;
 
 import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.bean.UpdateInfo;
-import com.example.dell.mobilesafe.utils.StreamTools;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -39,8 +34,6 @@ import net.tsz.afinal.http.AjaxCallBack;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -53,11 +46,9 @@ import java.net.URL;
  */
 public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";//表示在哪个类打印这个日志
-    private static final int JSON_ERROR = 1;
     private static final int ENTER_HOME = 2;
     private static final int SHOW_UPDATE_DIALOG = 3;
-    private static final int URL_ERROR = 4;
-    private static final int NETWORK_ERROR = 5;
+
     private Message msg;
     private TextView splashVersionTxt;
     private ProgressBar updateApkPrb;
@@ -100,6 +91,20 @@ public class SplashActivity extends AppCompatActivity {
 
     private void showUpdateDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                dialog.dismiss();
+                enterHome();
+            }
+        });
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                dialog.dismiss();
+                enterHome();
+            }
+        });
         builder.setTitle("提示");
         builder.setMessage(updateInfo.getDecription());
         builder.setNegativeButton("下次再说", new DialogInterface.OnClickListener() {
@@ -190,7 +195,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 @Override
                 public void onResponse(Response response) throws IOException {
-                    msg= Message.obtain();
+                    msg = Message.obtain();
                     String result = response.body().string();
                     //解析JSON
                     Gson gson = new Gson();
