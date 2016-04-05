@@ -2,13 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:background="#8866ff00"
         android:gravity="center"
         android:text="我是主页面"
         android:textColor="#000000"
         android:textSize="20sp" />
+
+    <com.example.dell.mobilesafe.view.FocuseTestView
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="浙江温州最大皮革厂，江南皮革厂倒闭了，王八蛋老板，黄鹤，吃、喝、嫖，赌，欠下了3.5个亿，带着他的小姨子跑了。
+我们没有办法，拿着钱包抵工资，原价都是一百多，两百多，三百多的钱包，统统只卖二十快，统统只卖二十块！黄鹤王八蛋，你不是人，我们辛辛苦苦给你干了大半年，你不发工资，你还我血汗钱，还我血汗钱！"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <GridView
+        android:verticalSpacing="15dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/grid_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3" />
 </LinearLayout>
