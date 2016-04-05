@@ -21,10 +21,8 @@ public class SettingActivity extends AppCompatActivity {
         Boolean update=sharedPreferences.getBoolean("update", false);
         if (update){
             settingItemView.setChecked(update);
-            settingItemView.setDecription("自动升级已经开始");
         }else{
             settingItemView.setChecked(update);
-            settingItemView.setDecription("自动升级已经关闭");
         }//使用保存的勾选状态
 
         //settingItemView表示一个组合
@@ -34,11 +32,9 @@ public class SettingActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor=sharedPreferences.edit();
                 if (settingItemView.isChecked()){
                     settingItemView.setChecked(false);
-                    settingItemView.setDecription("自动升级已经关闭");
                     editor.putBoolean("update",false);
                 }else{
                     settingItemView.setChecked(true);
-                    settingItemView.setDecription("自动升级已经开始");
                     editor.putBoolean("update",true);
                 }
                 editor.apply();//shareprefence保存状态

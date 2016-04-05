@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yq="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
@@ -15,7 +16,13 @@
         android:textSize="20sp" />
 
     <com.example.dell.mobilesafe.view.SettingItemView
+        yq:titles="设置自动更新"
+        yq:update_off="自动更新已经关闭"
+        yq:update_on="自动更新已经开启"
         android:id="@+id/siv_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <com.example.dell.mobilesafe.view.SettingItemView
+        android:layout_width=""
+        android:layout_height=""></com.example.dell.mobilesafe.view.SettingItemView>
 </LinearLayout>
