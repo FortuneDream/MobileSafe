@@ -3,6 +3,7 @@ package com.example.dell.mobilesafe.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -48,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";//表示在哪个类打印这个日志
     private static final int ENTER_HOME = 2;
     private static final int SHOW_UPDATE_DIALOG = 3;
-
+    private SharedPreferences sharedPreferences;
     private Message msg;
     private TextView splashVersionTxt;
     private ProgressBar updateApkPrb;
@@ -77,13 +78,24 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        sharedPreferences=getSharedPreferences("config",MODE_PRIVATE);
         splashVersionTxt = (TextView) findViewById(R.id.txt_splash_version);
         updateApkPrb = (ProgressBar) findViewById(R.id.prb_updateapk);
         assert splashVersionTxt != null;
         //设置版本名称
         splashVersionTxt.setText("版本名" + getVersionName());
-        //软件的升级
-        checkVersion();
+
+        //得到check保存的信息，如果是，就提示版本更新，否，也延迟2秒进入主页
+        if(sharedPreferences.getBoolean("update",false)){
+            checkVersion();
+        }else {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                        enterHome();
+                }
+            },2000);
+        }
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f, 1.0f);
         alphaAnimation.setDuration(1000);
         findViewById(R.id.rl_splash_root).startAnimation(alphaAnimation);

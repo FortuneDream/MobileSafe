@@ -9,6 +9,7 @@ import android.widget.GridView;
 
 import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.adapter.HomeGridAdapter;
+import com.example.dell.mobilesafe.view.SettingItemView;
 
 
 /**
@@ -22,6 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         gridView = (GridView) findViewById(R.id.grid_home);
+
         HomeGridAdapter adapter = new HomeGridAdapter(this);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
