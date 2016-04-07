@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+
 import com.example.dell.mobilesafe.R;
 
 public class LostFindActivity extends AppCompatActivity {
@@ -22,5 +24,11 @@ public class LostFindActivity extends AppCompatActivity {
             finish();
         }
         setContentView(R.layout.activity_lost_find);
+    }
+
+    public void reEnterSetting(View view){
+        Intent intent=new Intent(this,Setup1Activity.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--属性的集合-->
+    <!--自定义控件属性的集合-->
     <declare-styleable name="SettingItemView">
         <attr name="titles" format="string" />
         <attr name="update_off" format="string" />
