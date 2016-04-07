@@ -78,7 +78,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        sharedPreferences=getSharedPreferences("config",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
         splashVersionTxt = (TextView) findViewById(R.id.txt_splash_version);
         updateApkPrb = (ProgressBar) findViewById(R.id.prb_updateapk);
         assert splashVersionTxt != null;
@@ -86,15 +86,15 @@ public class SplashActivity extends AppCompatActivity {
         splashVersionTxt.setText("版本名" + getVersionName());
 
         //得到check保存的信息，如果是，就提示版本更新，否，也延迟2秒进入主页
-        if(sharedPreferences.getBoolean("update",false)){
+        if (sharedPreferences.getBoolean("update", false)) {
             checkVersion();
-        }else {
+        } else {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                        enterHome();
+                    enterHome();
                 }
-            },2000);
+            }, 2000);
         }
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f, 1.0f);
         alphaAnimation.setDuration(1000);
@@ -103,6 +103,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void showUpdateDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //设置退出dialog的方法，即当点击dialog外或者返回键时，调用的方法
         builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
@@ -195,40 +196,40 @@ public class SplashActivity extends AppCompatActivity {
 
         //请求网络，得到最新版本信息，
         URL url = null;
-            OkHttpClient okHttpClient = new OkHttpClient();
-            final Request request = new Request.Builder().url(getString(R.string.serverurl)).build();
-            Call call = okHttpClient.newCall(request);
-            call.enqueue(new Callback() {
-                @Override
-                public void onFailure(Request request, IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "获取新版本失败", Toast.LENGTH_SHORT).show();
-                }
+        OkHttpClient okHttpClient = new OkHttpClient();
+        final Request request = new Request.Builder().url(getString(R.string.serverurl)).build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "获取新版本失败", Toast.LENGTH_SHORT).show();
+            }
 
-                @Override
-                public void onResponse(Response response) throws IOException {
-                    msg = Message.obtain();
-                    String result = response.body().string();
-                    //解析JSON
-                    Gson gson = new Gson();
-                    updateInfo = gson.fromJson(result, UpdateInfo.class);
-                    System.out.println("updataInfo.getApkurl:" + updateInfo.getApkurl());
+            @Override
+            public void onResponse(Response response) throws IOException {
+                msg = Message.obtain();
+                String result = response.body().string();
+                //解析JSON
+                Gson gson = new Gson();
+                updateInfo = gson.fromJson(result, UpdateInfo.class);
+                System.out.println("updataInfo.getApkurl:" + updateInfo.getApkurl());
 
-                    if (getVersionName().equals(updateInfo.getVersion())) {
-                        //没有新版本
-                        msg.what = ENTER_HOME;
-                    } else {
-                        msg.what = SHOW_UPDATE_DIALOG;
-                        //弹出升级对话框
-                    }
-                    long endTime = System.currentTimeMillis();
-                    long dTime = endTime - startTime;
-                    if (dTime < 2000) {
-                        SystemClock.sleep(2000 - dTime);
-                    }
-                    handler.sendMessage(msg);
+                if (getVersionName().equals(updateInfo.getVersion())) {
+                    //没有新版本
+                    msg.what = ENTER_HOME;
+                } else {
+                    msg.what = SHOW_UPDATE_DIALOG;
+                    //弹出升级对话框
                 }
-            });
+                long endTime = System.currentTimeMillis();
+                long dTime = endTime - startTime;
+                if (dTime < 2000) {
+                    SystemClock.sleep(2000 - dTime);
+                }
+                handler.sendMessage(msg);
+            }
+        });
 
 
     }

@@ -20,6 +20,32 @@ public class SettingItemView extends RelativeLayout {
     private String updateOff;
     private String titles;
     private String updateOn;
+
+    //设置样式
+    public SettingItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initView(context);
+    }
+
+    //布局文件中实例化
+    public SettingItemView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initView(context);
+        //得到的是某一个xml实例的属性，如activity_setting里的那个SettingItemView控件
+        //System.out.println(attrs.getAttributeValue(0));
+        titles=attrs.getAttributeValue("http://schemas.android.com/apk/res-auto","titles");
+        updateOff=attrs.getAttributeValue("http://schemas.android.com/apk/res-auto","update_off");
+        updateOn=attrs.getAttributeValue("http://schemas.android.com/apk/res-auto", "update_on");
+        titlesTxt.setText(titles);//默认
+        setDecription(updateOff);//默认
+    }
+
+    //代码中实例化
+    public SettingItemView(Context context) {
+        super(context);
+        initView(context);
+    }
+
     //初始化布局文件
     private void initView(Context context) {
         //inflate：吧布局文件-》View
@@ -52,28 +78,5 @@ public class SettingItemView extends RelativeLayout {
     }
 
 
-    //设置样式
-    public SettingItemView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView(context);
-    }
 
-    //布局文件中实例化
-    public SettingItemView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        initView(context);
-        //得到的是某一个xml实例的属性，如activity_setting里的那个SettingItemView控件
-        //System.out.println(attrs.getAttributeValue(0));
-        titles=attrs.getAttributeValue("http://schemas.android.com/apk/res-auto","titles");
-        updateOff=attrs.getAttributeValue("http://schemas.android.com/apk/res-auto","update_off");
-        updateOn=attrs.getAttributeValue("http://schemas.android.com/apk/res-auto", "update_on");
-        titlesTxt.setText(titles);//默认
-        setDecription(updateOff);//默认
-    }
-
-    //代码中实例化
-    public SettingItemView(Context context) {
-        super(context);
-        initView(context);
-    }
 }

@@ -2,17 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/backgroudWhite"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="#8866ff00"
+        android:background="@color/titleGreen"
         android:gravity="center"
-        android:text="我是主页面"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        android:text="主页面"
+        android:textColor="@color/textBlack"
+        android:textSize="@dimen/title_size" />
 
     <com.example.dell.mobilesafe.view.FocuseTestView
         android:ellipsize="marquee"
