@@ -75,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
         View view = View.inflate(HomeActivity.this, R.layout.dialog_setuppwd, null);
         dialog = builder.create();//show（）会返回一个dialog
-        dialog.setView(view, 0, 0, 0, 0);
+        dialog.setView(view, 0, 0, 0, 0);//距离为0.兼容低版本
         dialog.show();
         final EditText passwordEdt = (EditText) view.findViewById(R.id.edt_password);
         final EditText passwordConfirmEdt = (EditText) view.findViewById(R.id.edt_password_confirm);

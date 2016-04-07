@@ -7,27 +7,31 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.dell.mobilesafe.R;
-public class Setup4Activity extends AppCompatActivity {
+public class Setup4Activity extends BaseSetupActivity {
     private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences=getSharedPreferences("config",MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putBoolean("configed",true);
-        editor.apply();
         setContentView(R.layout.activity_setup4);
     }
 
-    public void next(View view){
+    @Override
+    public void showNext() {
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putBoolean("configed",true);
+        editor.apply();
         Intent intent=new Intent(this,LostFindActivity.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.translate_next_in, R.anim.translate_next_out);
     }
 
-    public void pre(View view){
+    @Override
+    public void showPre() {
         Intent intent=new Intent(this,Setup3Activity.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.translate_pre_in, R.anim.translate_pre_out);
     }
 }
