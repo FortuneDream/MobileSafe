@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--XML自定义Activity平移动画-->
-<translate
+<!--<translate> android:toXDelta="-100%p"  n%p代表屏幕的%，-代表反方向-->
+<!--以左上角为中心-->
+    <translate
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:fromXDelta="0"
     android:toXDelta="-100%p"

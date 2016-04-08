@@ -22,6 +22,7 @@
         style="@style/text_content_style"
         android:text="SIM卡变更后，\n报警短信回发给安全号码" />
     <EditText
+        android:id="@+id/edt_number"
         android:hint="请输入安全号码"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

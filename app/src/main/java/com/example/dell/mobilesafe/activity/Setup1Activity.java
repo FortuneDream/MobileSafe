@@ -10,9 +10,6 @@ import android.view.View;
 import com.example.dell.mobilesafe.R;
 
 public class Setup1Activity extends BaseSetupActivity {
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +19,7 @@ public class Setup1Activity extends BaseSetupActivity {
     }
 
     public void showNext() {
-        Intent intent=new Intent(this,Setup2Activity.class);
+        Intent intent = new Intent(this, Setup2Activity.class);
         startActivity(intent);
         finish();
         //在finish（）之后使用，第二个Activity从右边进来，然后第二个Activity往左边出去（即第三个Acitivity进来）
