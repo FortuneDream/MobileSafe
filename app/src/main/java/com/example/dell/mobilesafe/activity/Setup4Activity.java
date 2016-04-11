@@ -5,15 +5,38 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.example.dell.mobilesafe.R;
 
 public class Setup4Activity extends BaseSetupActivity {
+    private CheckBox protectedCb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+        Boolean protecting=sharedPreferences.getBoolean("protecting", false);
+        final SharedPreferences.Editor editor =sharedPreferences.edit();
         setContentView(R.layout.activity_setup4);
+        protectedCb= (CheckBox) findViewById(R.id.cb_protected);
+        if (protecting){
+            protectedCb.setText("当前状态：手机防盗已经开启");
+        }else{
+            protectedCb.setText("当前状态：手机防盗没有开启");
+        }
+        protectedCb.setChecked(protecting);
+        protectedCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                editor.putBoolean("protecting",isChecked);
+                if (isChecked){
+                    protectedCb.setText("当前状态：手机防盗已经开启");
+                }else {
+                    protectedCb.setText("当前状态：手机防盗没有开启");
+                }
+                editor.apply();
+            }
+        });
     }
 
     @Override

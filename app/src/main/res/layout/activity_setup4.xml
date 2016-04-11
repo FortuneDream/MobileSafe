@@ -19,6 +19,7 @@
 
     <!--checkbox可以直接设置text，默认状态-->
     <CheckBox
+        android:id="@+id/cb_protected"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="当前状态：手机防盗没有开启" />

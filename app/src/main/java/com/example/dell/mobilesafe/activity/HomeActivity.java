@@ -102,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
                     editor.apply();
                     dialog.dismiss();
                     Log.e(TAG, "保存密码，消掉对话框，进入手机防盗页面");
-                    Intent intent=new Intent(HomeActivity.this,LostFindActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, LostFindActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(HomeActivity.this, "两次密码输入不一致", Toast.LENGTH_SHORT).show();
@@ -139,7 +139,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (MD5.encode(password).equals(passwordSave)) {
                     Log.e(TAG, "消掉对话框进入主页面");
                     dialog.dismiss();
-                    Intent intent=new Intent(HomeActivity.this,LostFindActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, LostFindActivity.class);
                     startActivity(intent);
 
                 } else {
