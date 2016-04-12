@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.dell.mobilesafe.activity.LockScreenActivity">
+
+    <Button
+        android:onClick="lockScreen"
+        android:id="@+id/lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="一键锁屏" />
+    <Button
+        android:onClick="openAdmin"
+        android:id="@+id/open_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开启设备管理员" />
+    <Button
+        android:onClick="uninstall"
+        android:id="@+id/unistall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="卸载" />
+</LinearLayout>

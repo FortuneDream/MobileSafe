@@ -29,11 +29,13 @@ public class GPSService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        sharedPreferences=getSharedPreferences("config",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        Criteria criteria=new Criteria();
+        listener = new MyLocationListenner();
+
+        Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
-        String provider=locationManager.getBestProvider(criteria,true);//得到当前最可能的精准定位
+        String provider = locationManager.getBestProvider(criteria, true);//得到当前最可能的精准定位
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -44,36 +46,36 @@ public class GPSService extends Service {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        listener= new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                String longtitude = String.valueOf(location.getLongitude());
-                String latitude = String.valueOf(location.getLatitude());
-                String accuracy = String.valueOf(location.getAccuracy());
-                SharedPreferences.Editor edit=sharedPreferences.edit();
-                edit.putString("longtitude",longtitude);
-                edit.putString("latitude",latitude);
-                edit.putString("accuracy",accuracy);
-                edit.apply();
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-        };
         locationManager.requestLocationUpdates(provider, 0, 0, listener);
 
+    }
+
+    class MyLocationListenner implements LocationListener {
+
+        @Override
+        public void onLocationChanged(Location location) {
+            String longtitude = String.valueOf(location.getLongitude());
+            String latitude = String.valueOf(location.getLatitude());
+            String accuracy = String.valueOf(location.getAccuracy());
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+            edit.putString("lastlocation", longtitude+" "+latitude+" "+accuracy);
+            edit.apply();
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
     }
 
     public GPSService() {
