@@ -128,7 +128,7 @@
     <TextView
         style="@style/text_content_style"
         android:drawableLeft="@android:drawable/star_big_on"
-        android:text="远程删除数据：#*WipeData*#" />
+        android:text="远程删除数据：#WipeData#" />
 
     <TextView
         style="@style/text_content_style"

@@ -51,7 +51,7 @@ public class Setup3Activity extends BaseSetupActivity {
         //必须设置了安全号码才可以进入下一页面
         if (TextUtils.isEmpty(number)) {
             Toast.makeText(this, "请设置安全号码", Toast.LENGTH_SHORT).show();
-            return;//使用return可以不进入下一个页面
+            return ;//使用return可以不进入下一个页面
         }
         //保存号码
         SharedPreferences.Editor editor = sharedPreferences.edit();
