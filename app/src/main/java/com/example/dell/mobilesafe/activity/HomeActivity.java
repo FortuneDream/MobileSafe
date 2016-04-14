@@ -39,13 +39,18 @@ public class HomeActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent;
                 //参数一 gridview，参数二具体的某个View，positon位置，id
                 switch (position) {
+
                     case 0:
                         showLostFindDialog();
                         break;
-                    case 8:
-                        Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
+                    case 7:
+                        intent=new Intent(HomeActivity.this,ToolsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 8:intent = new Intent(HomeActivity.this, SettingActivity.class);
                         startActivity(intent);
                         break;
                     default:

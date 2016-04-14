@@ -6,14 +6,15 @@
     android:orientation="vertical"
     android:background="@color/backgroudWhite"
     tools:context="com.example.dell.mobilesafe.activity.LostFindActivity">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="55dp"
-    android:background="@color/titleGreen"
-    android:gravity="center"
-    android:text="手机防盗"
-    android:textSize="@dimen/title_size"
-    android:textColor="@color/textBlack"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/titleGreen"
+        android:gravity="center"
+        android:text="手机防盗"
+        android:textColor="@color/textBlack"
+        android:textSize="@dimen/title_size" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

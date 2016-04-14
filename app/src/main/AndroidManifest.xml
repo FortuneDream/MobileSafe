@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -74,18 +74,22 @@
 
         <receiver
             android:name=".receiver.DeviceReceiver"
-            android:enabled="true"
             android:description="@string/sample_device_admin_description"
+            android:enabled="true"
+            android:exported="true"
             android:label="@string/sample_device_admin"
-            android:permission="android.permission.BIND_DEVICE_ADMIN"
-            android:exported="true">
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
-                android:resource="@xml/device_admin_sample"/>
+                android:resource="@xml/device_admin_sample" />
+
             <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".activity.ToolsActivity" />
+        <activity android:name=".activity.NumberAddressQueryActivity"></activity>
     </application>
 
 </manifest>
