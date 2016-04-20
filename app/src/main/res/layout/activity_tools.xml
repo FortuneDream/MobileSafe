@@ -6,13 +6,8 @@
     android:orientation="vertical"
     tools:context="com.example.dell.mobilesafe.activity.ToolsActivity">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/titleGreen"
-        android:gravity="center"
         android:text="高级工具"
-        android:textSize="@dimen/title_size"
-        android:textColor="@color/textBlack"/>
+       style="@style/title_one"/>
     <TextView
         android:onClick="numberAddressQuery"
         android:gravity="center_vertical"
@@ -22,6 +17,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="归属地查询"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/textBlack"/>
+    <TextView
+        android:onClick="smsBackUp"
+        android:gravity="center_vertical"
+        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="短信备份"
         android:textSize="@dimen/text_size"
         android:textColor="@color/textBlack"/>
 </LinearLayout>

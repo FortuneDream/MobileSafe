@@ -8,13 +8,8 @@
     tools:context="com.example.dell.mobilesafe.activity.LostFindActivity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/titleGreen"
-        android:gravity="center"
-        android:text="手机防盗"
-        android:textColor="@color/textBlack"
-        android:textSize="@dimen/title_size" />
+        style="@style/title_one"
+        android:text="手机防盗" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -38,12 +33,7 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
     <View
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/divider"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"/>
+        style="@style/divider"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

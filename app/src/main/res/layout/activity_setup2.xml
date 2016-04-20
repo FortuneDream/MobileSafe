@@ -9,13 +9,9 @@
     tools:context="com.example.dell.mobilesafe.activity.Setup1Activity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/titleGreen"
-        android:gravity="center"
+       style="@style/title_one"
         android:text="2.手机卡绑定"
-        android:textColor="@color/textBlack"
-        android:textSize="@dimen/title_size" />
+         />
 
     <!--用样式的办法写XML，drawableLeft可直接在文字左边设置图片-->
     <TextView

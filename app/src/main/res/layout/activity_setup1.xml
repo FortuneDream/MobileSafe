@@ -8,13 +8,8 @@
     tools:context="com.example.dell.mobilesafe.activity.Setup1Activity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/titleGreen"
-        android:gravity="center"
-        android:text="1.欢迎使用手机防盗"
-        android:textColor="#000000"
-        android:textSize="@dimen/title_size" />
+       style="@style/title_one"
+        android:text="1.欢迎使用手机防盗" />
 
     <!--用样式的办法写XML，drawableLeft可直接在文字左边设置图片-->
     <TextView

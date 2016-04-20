@@ -2,7 +2,6 @@ package com.example.dell.mobilesafe.activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -11,7 +10,7 @@ import android.view.View;
 /**
  * Created by Q on 2016/4/7.
  */
-//基类抽象类
+//手机防盗页面的基类抽象类
 public abstract class BaseSetupActivity  extends AppCompatActivity {
     private GestureDetector detector;//定义手势识别器，此处用于Activity滑动
     protected SharedPreferences sharedPreferences;

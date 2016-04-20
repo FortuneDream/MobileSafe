@@ -13,8 +13,29 @@
         android:text="联系人"
         android:textColor="@color/textBlack"
         android:textSize="@dimen/title_size" />
-    <ListView
-        android:id="@+id/list_contact"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/list_contact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:visibility="visible"
+                android:id="@+id/ll_loading"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="正在加载"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+    </FrameLayout>
+
 </LinearLayout>

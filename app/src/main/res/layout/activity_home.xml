@@ -6,13 +6,8 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/titleGreen"
-        android:gravity="center"
-        android:text="主页面"
-        android:textColor="@color/textBlack"
-        android:textSize="@dimen/title_size" />
+      style="@style/title_one"
+        android:text="主页面" />
 
     <com.example.dell.mobilesafe.view.FocuseTestView
         android:ellipsize="marquee"

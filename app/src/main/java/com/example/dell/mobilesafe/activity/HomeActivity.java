@@ -8,15 +8,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dell.mobilesafe.R;
-import com.example.dell.mobilesafe.adapter.HomeGridAdapter;
+import com.example.dell.mobilesafe.bean.HomeItem;
 import com.example.dell.mobilesafe.utils.MD5;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -27,14 +34,18 @@ public class HomeActivity extends AppCompatActivity {
     private GridView gridView;
     private SharedPreferences sharedPreferences;
     private AlertDialog dialog;
+    private List<HomeItem> homeItemList=new ArrayList<HomeItem>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        initIco();
         gridView = (GridView) findViewById(R.id.grid_home);
         sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);//config表示保存的文件名字，以xml保存在data文件下
-        HomeGridAdapter adapter = new HomeGridAdapter(this);
+        HomeGridAdapter adapter = new HomeGridAdapter();
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -45,6 +56,10 @@ public class HomeActivity extends AppCompatActivity {
 
                     case 0:
                         showLostFindDialog();
+                        break;
+                    case 1:
+                        intent=new Intent(HomeActivity.this,CallSmsSafeActivity.class);
+                        startActivity(intent);
                         break;
                     case 7:
                         intent=new Intent(HomeActivity.this,ToolsActivity.class);
@@ -60,10 +75,33 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+
+    private void initIco() {
+        HomeItem homeItem0=new HomeItem("手机防盗",R.drawable.ico_shoujifangdao);
+        HomeItem homeItem1=new HomeItem("通讯卫士",R.drawable.ico_tongxunweishi);
+        HomeItem homeItem2=new HomeItem("应用管理",R.drawable.ico_yingyongguanli);
+        HomeItem homeItem3=new HomeItem("进程管理",R.drawable.ico_jinchengguanli);
+        HomeItem homeItem4=new HomeItem("流量管理",R.drawable.ico_liuliangtongji);
+        HomeItem homeItem5=new HomeItem("手机杀毒",R.drawable.ico_shoujishadu);
+        HomeItem homeItem6=new HomeItem("缓存清理",R.drawable.ico_huancunqingli);
+        HomeItem homeItem7=new HomeItem("高级工具",R.drawable.ico_gaojigongju);
+        HomeItem homeItem8=new HomeItem("设置中心",R.drawable.ico_shezhizhongxin);
+        homeItemList.add(homeItem0);
+        homeItemList.add(homeItem1);
+        homeItemList.add(homeItem2);
+        homeItemList.add(homeItem3);
+        homeItemList.add(homeItem4);
+        homeItemList.add(homeItem5);
+        homeItemList.add(homeItem6);
+        homeItemList.add(homeItem7);
+        homeItemList.add(homeItem8);
+
+    }
+
     //判断是否设置了密码
     private boolean isSetupPwd() {
         String password = sharedPreferences.getString("password", null);
-        return !TextUtils.isEmpty(password);
+        return !TextUtils.isEmpty(password);//password=""，返回false，否则返回true
     }
 
     //根据当前情况，弹出不同的对话框
@@ -161,5 +199,45 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private class HomeGridAdapter extends BaseAdapter{
 
+
+        @Override
+        public int getCount() {
+            return homeItemList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder viewHolder;
+            View view;
+            if (convertView==null){
+                view=View.inflate(HomeActivity.this,R.layout.item_home,null);
+                viewHolder=new ViewHolder();
+                viewHolder.nameTxt= (TextView) view.findViewById(R.id.txt_name);
+                viewHolder.icoImg= (ImageView) view.findViewById(R.id.img_ico);
+                view.setTag(viewHolder);
+            }else {
+                view=convertView;
+                viewHolder= (ViewHolder) view.getTag();
+            }
+            viewHolder.nameTxt.setText(homeItemList.get(position).getName());
+            viewHolder.icoImg.setImageResource(homeItemList.get(position).getId());
+            return view;
+        }
+    }
+    static class ViewHolder{
+        TextView nameTxt;
+        ImageView icoImg;
+    }
 }

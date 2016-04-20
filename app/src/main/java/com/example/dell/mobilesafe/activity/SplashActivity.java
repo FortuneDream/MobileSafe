@@ -111,13 +111,6 @@ public class SplashActivity extends AppCompatActivity {
                 enterHome();
             }
         });
-        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                dialog.dismiss();
-                enterHome();
-            }
-        });
         builder.setTitle("提示");
         builder.setMessage(updateInfo.getDecription());
         builder.setNegativeButton("下次再说", new DialogInterface.OnClickListener() {
