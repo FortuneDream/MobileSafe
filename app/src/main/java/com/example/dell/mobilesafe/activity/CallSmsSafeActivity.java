@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,9 +23,8 @@ import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.bean.BlackNumberInfo;
 import com.example.dell.mobilesafe.db.BlackNumberDAO;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class CallSmsSafeActivity extends AppCompatActivity {
     private LinearLayout loadingLL;

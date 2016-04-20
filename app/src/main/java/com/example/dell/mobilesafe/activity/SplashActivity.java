@@ -35,7 +35,6 @@ import net.tsz.afinal.http.AjaxCallBack;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 /**
  * 启动页面
@@ -49,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "SplashActivity";//表示在哪个类打印这个日志
     private static final int ENTER_HOME = 2;
     private static final int SHOW_UPDATE_DIALOG = 3;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences mSharedPreferences;
     private Message msg;
     private TextView splashVersionTxt;
     private ProgressBar updateApkPrb;
@@ -78,7 +77,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+        mSharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
         splashVersionTxt = (TextView) findViewById(R.id.txt_splash_version);
         updateApkPrb = (ProgressBar) findViewById(R.id.prb_updateapk);
         assert splashVersionTxt != null;
@@ -86,7 +85,7 @@ public class SplashActivity extends AppCompatActivity {
         splashVersionTxt.setText("版本名" + getVersionName());
 
         //得到check保存的信息，如果是，就提示版本更新，否，也延迟2秒进入主页
-        if (sharedPreferences.getBoolean("update", false)) {
+        if (mSharedPreferences.getBoolean("update", false)) {
             checkVersion();
         } else {
             handler.postDelayed(new Runnable() {
@@ -188,7 +187,6 @@ public class SplashActivity extends AppCompatActivity {
         startTime = System.currentTimeMillis();
 
         //请求网络，得到最新版本信息，
-        URL url = null;
         OkHttpClient okHttpClient = new OkHttpClient();
         final Request request = new Request.Builder().url(getString(R.string.serverurl)).build();
         Call call = okHttpClient.newCall(request);

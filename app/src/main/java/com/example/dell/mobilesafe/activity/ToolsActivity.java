@@ -1,6 +1,5 @@
 package com.example.dell.mobilesafe.activity;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Environment;

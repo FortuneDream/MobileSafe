@@ -56,7 +56,7 @@ public abstract class BaseSetupActivity  extends AppCompatActivity {
     }
 
     public void next(View view){
-        showNext();//所有的Acitivity都有一个按钮是设置了next方法，点击之后，会调用子类的实现方法，所以，子类只需要实现一个showNext方法，就可以让鼠标点击和手势滑动同时起作用
+        showNext();//所有的Activity都有一个按钮是设置了next方法，点击之后，会调用子类的实现方法，所以，子类只需要实现一个showNext方法，就可以让鼠标点击和手势滑动同时起作用
     }
     public void pre(View view){
         showPre();

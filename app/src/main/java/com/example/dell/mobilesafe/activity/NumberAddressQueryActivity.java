@@ -1,6 +1,6 @@
 package com.example.dell.mobilesafe.activity;
 
-import android.os.Vibrator;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,10 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.dell.mobilesafe.R;
-
-import javax.xml.validation.Validator;
 
 public class NumberAddressQueryActivity extends AppCompatActivity {
     private EditText numberEdt;

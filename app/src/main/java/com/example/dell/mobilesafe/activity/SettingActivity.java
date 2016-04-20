@@ -24,11 +24,7 @@ public class SettingActivity extends AppCompatActivity {
         sharedPreferences=getSharedPreferences("config",MODE_PRIVATE);
 
         Boolean update=sharedPreferences.getBoolean("update", false);
-        if (update){
-            autoUpdateItemView.setChecked(update);
-        }else{
-            autoUpdateItemView.setChecked(update);
-        }//使用保存的勾选状态
+        autoUpdateItemView.setChecked(update);//使用保存的勾选状态
 
         blackNumerIntent=new Intent(this, CallSmsSafeService.class);
         //boolean blackNumberService= ServiceStatesUtils.isRunningService(this,"com.example.dell.mobilesafe.service.CallSmsSafeService");//检测是否在运行

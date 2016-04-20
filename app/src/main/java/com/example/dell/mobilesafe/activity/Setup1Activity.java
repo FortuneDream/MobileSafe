@@ -1,12 +1,7 @@
 package com.example.dell.mobilesafe.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-
 import com.example.dell.mobilesafe.R;
 
 public class Setup1Activity extends BaseSetupActivity {

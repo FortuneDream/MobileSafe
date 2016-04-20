@@ -58,12 +58,12 @@ public class SmsBackUpUtils {
 
             xmlSerializer.startTag(null, "type");
             String type = cursor.getString(cursor.getColumnIndex("type"));
-            xmlSerializer.text(date);
+            xmlSerializer.text(type);
             xmlSerializer.endTag(null, "type");
 
             xmlSerializer.startTag(null, "body");
             String body = cursor.getString(cursor.getColumnIndex("body"));
-            xmlSerializer.text(date);
+            xmlSerializer.text(body);
             xmlSerializer.endTag(null, "body");
 
             xmlSerializer.endTag(null, "sms");

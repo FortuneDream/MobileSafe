@@ -10,13 +10,12 @@ import android.media.MediaPlayer;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.text.TextUtils;
-import android.widget.Toast;
+
 
 import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.activity.LockScreenActivity;
 import com.example.dell.mobilesafe.service.GPSService;
 
-import java.util.Objects;
 
 public class SMSReceiver extends BroadcastReceiver {
     private SharedPreferences sharedPreferences;
@@ -30,7 +29,7 @@ public class SMSReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         sharedPreferences = context.getSharedPreferences("config", Context.MODE_PRIVATE);
         devicePolicyManager = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-        String format = intent.getStringExtra("format");
+//        String format = intent.getStringExtra("format");
         Object[] pdus = (Object[]) intent.getExtras().get("pdus");//pdus是一条短信的所有短信，因为短信会因为太长而被拆分
         SmsMessage[] messages = new SmsMessage[pdus.length];
         StringBuilder stringBuilder = new StringBuilder();
@@ -63,8 +62,8 @@ public class SMSReceiver extends BroadcastReceiver {
             } else if ("#WipeData#".equals(body)) {
                 ComponentName mDeviceAdminSample = new ComponentName(context, DeviceReceiver.class);
                 if (devicePolicyManager.isAdminActive(mDeviceAdminSample)) {
-                    //            devicePolicyManager.wipeData(0);//0，让手机恢复为出厂设置
-//            devicePolicyManager.wipeData(DevicePolicyManager.WIPE_EXTERNAL_STORAGE);//清除SD卡
+                    devicePolicyManager.wipeData(0);//0，让手机恢复为出厂设置
+                    devicePolicyManager.wipeData(DevicePolicyManager.WIPE_EXTERNAL_STORAGE);//清除SD卡
                 } else {
                     openAdmin(context);
                 }
@@ -84,7 +83,7 @@ public class SMSReceiver extends BroadcastReceiver {
     }
 
     private void openAdmin(Context context) {
-        Intent openAdmin=new Intent(context, LockScreenActivity.class);
+        Intent openAdmin = new Intent(context, LockScreenActivity.class);
         openAdmin.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//非activity来打开activity不会创建task，所以这里要加一个new task
         context.startActivity(openAdmin);
     }

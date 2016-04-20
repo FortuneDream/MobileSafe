@@ -12,11 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.SharedPreferencesCompat;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.List;
 
 public class GPSService extends Service {
     private TextView positionTxt;

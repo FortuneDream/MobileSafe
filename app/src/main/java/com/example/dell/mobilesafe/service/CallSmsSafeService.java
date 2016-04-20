@@ -12,7 +12,6 @@ import android.telephony.TelephonyManager;
 
 import com.example.dell.mobilesafe.db.BlackNumberDAO;
 
-import java.lang.reflect.Method;
 
 public class CallSmsSafeService extends Service {
     private InnerSMSReceiver smsReceiver;
@@ -99,27 +98,27 @@ public class CallSmsSafeService extends Service {
     }
 
     //挂断电话，未完成
-    public void endCall(){
-//        IBinder b=ServiceManager.getService(TELEPHONY_SERVICE);
-        //用反射得到ServiceManager的实例
-        /**
-         * 1.得到字节码
-         * 2.得到对应的方法getService
-         * 3.得到实例
-         * 4.执行这个方法
-         * 以上四步就是反射的过程
-         * 5.拷贝.aidl文件
-         * 6.生成java代码
-         * 7.执行java中的endCall();
-         */
-        try {
-            Class clazz=CallSmsSafeService.class.getClassLoader().loadClass("android.os.ServiceManager");
-            Method method=clazz.getMethod("getService",String.class);
-            IBinder ibinder= (IBinder) method.invoke(null,TELEPHONY_SERVICE);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
+//    public void endCall(){
+////        IBinder b=ServiceManager.getService(TELEPHONY_SERVICE);
+//        //用反射得到ServiceManager的实例
+//        /**
+//         * 1.得到字节码
+//         * 2.得到对应的方法getService
+//         * 3.得到实例
+//         * 4.执行这个方法
+//         * 以上四步就是反射的过程
+//         * 5.拷贝.aidl文件
+//         * 6.生成java代码
+//         * 7.执行java中的endCall();
+//         */
+//        try {
+//            Class clazz=CallSmsSafeService.class.getClassLoader().loadClass("android.os.ServiceManager");
+//            Method method=clazz.getMethod("getService",String.class);
+//            IBinder ibinder= (IBinder) method.invoke(null,TELEPHONY_SERVICE);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 }
