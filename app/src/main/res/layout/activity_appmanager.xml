@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.dell.mobilesafe.activity.APPManagerActivity">
+
+    <TextView
+        style="@style/title_one"
+        android:text="应用管理" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--data目录下-->
+        <TextView
+            android:id="@+id/txt_rom"
+            style="@style/text_content_style"
+            android:text="内存可用" />
+
+        <TextView
+            android:layout_marginRight="10dp"
+            android:id="@+id/txt_sd_card"
+            style="@style/text_content_style"
+            android:layout_alignParentRight="true"
+            android:text="sd卡可用" />
+    </RelativeLayout>
+    <!--当需要加载的时候，用真布局包裹list+progressdialog-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:id="@+id/ll_loading"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:id="@+id/pgb_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="正在加载中...."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <!--浮动的bar-->
+        <TextView
+            android:id="@+id/txt_state"
+            android:background="#FF0000FF"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
+</LinearLayout>

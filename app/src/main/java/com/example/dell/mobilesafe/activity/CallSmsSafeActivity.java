@@ -22,11 +22,13 @@ import android.widget.Toast;
 import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.bean.BlackNumberInfo;
 import com.example.dell.mobilesafe.db.BlackNumberDAO;
+import com.example.dell.mobilesafe.utils.LogUtil;
 
 import java.util.List;
 
 
 public class CallSmsSafeActivity extends AppCompatActivity {
+    private static final String TAG = "CallSmsSafeActivity";
     private LinearLayout loadingLL;
     private ListView listView;
     private BlackNumberDAO blackNumberDAO;
@@ -165,11 +167,11 @@ public class CallSmsSafeActivity extends AppCompatActivity {
                 //view对象和viewHolder进行关联，给view添加一个额外的数据->viewholder.viewholder中保存了2个控件的位置，。
                 view.setTag(viewHolder);
 
-                System.out.println("重新创建view" + position);
+                LogUtil.v(TAG,"重新创建view");
             } else {
                 view = convertView;
                 viewHolder = (ViewHolder) view.getTag();//直接view的tag中的viewholder，不用遍历view树
-                System.out.println("使用历史缓存的view" + position);
+                LogUtil.v(TAG,"使用历史缓存的view");
             }
 
             final BlackNumberInfo info = infos.get(position);
@@ -197,7 +199,7 @@ public class CallSmsSafeActivity extends AppCompatActivity {
                     //3.刷新
                 }
             });
-            System.out.println("mode:"+info.getMode()+"  "+info.getNumber());
+            LogUtil.v(TAG,"mode:"+info.getMode()+"  "+info.getNumber());
             return view;
         }
     }
@@ -236,7 +238,7 @@ public class CallSmsSafeActivity extends AppCompatActivity {
                         mode="2";
                         break;
                 }
-                System.out.println("新添加的mode:"+mode);
+                LogUtil.v(TAG,"新添加的mode:"+mode);
                 if (TextUtils.isEmpty(number)){
                     Toast.makeText(CallSmsSafeActivity.this,"电话号码不能为空",Toast.LENGTH_SHORT).show();
                 }else {

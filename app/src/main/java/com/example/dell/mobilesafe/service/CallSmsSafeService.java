@@ -50,12 +50,12 @@ public class CallSmsSafeService extends Service {
             switch (state){
                 case TelephonyManager.CALL_STATE_RINGING://电话打进来
                     //电话挂断
-                    if (blackNumberDAO.query(incomingNumber)){
-                        String mode= blackNumberDAO.queryMode(incomingNumber);
-                        if ("0".equals(mode)||"2".equals(mode)){
-                            //调用系统隐藏API
-                        }
-                    }
+//                    if (blackNumberDAO.query(incomingNumber)){
+//                        String mode= blackNumberDAO.queryMode(incomingNumber);
+//                        if ("0".equals(mode)||"2".equals(mode)){
+//                            //调用系统隐藏API
+//                        }
+//                    }
                     break;
                 default:
                     break;

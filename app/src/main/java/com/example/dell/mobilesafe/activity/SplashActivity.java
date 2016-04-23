@@ -14,7 +14,6 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ProgressBar;
@@ -23,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.bean.UpdateInfo;
+import com.example.dell.mobilesafe.utils.LogUtil;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -63,7 +63,7 @@ public class SplashActivity extends AppCompatActivity {
                     enterHome();
                     break;
                 case SHOW_UPDATE_DIALOG:
-                    Log.e(TAG, "有新版本，弹出对话框");
+                    LogUtil.v(TAG, "有新版本，弹出对话框");
                     showUpdateDialog();
                     break;
                 default:
@@ -125,9 +125,9 @@ public class SplashActivity extends AppCompatActivity {
                 //首先判断SD是否存在
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                     FinalHttp finalHttp = new FinalHttp();
-                    Log.e("SplashActivity", updateInfo.getApkurl());
+                    LogUtil.e("SplashActivity", updateInfo.getApkUrl());
 
-                    finalHttp.download(updateInfo.getApkurl(), Environment.getExternalStorageDirectory() + "/mobilesafe2.0.apk", new AjaxCallBack<File>() {
+                    finalHttp.download(updateInfo.getApkUrl(), Environment.getExternalStorageDirectory() + "/mobilesafe2.0.apk", new AjaxCallBack<File>() {
                         @Override
                         public void onLoading(long count, long current) {
                             super.onLoading(count, current);
@@ -161,7 +161,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void installApk(File t) {
-        //系统内部PackageIntaller
+        //系统内部PackageInstaller
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
         intent.setDataAndType(Uri.fromFile(t), "application/vnd.android.package-archive");
@@ -204,7 +204,7 @@ public class SplashActivity extends AppCompatActivity {
                 //解析JSON
                 Gson gson = new Gson();
                 updateInfo = gson.fromJson(result, UpdateInfo.class);
-                System.out.println("updataInfo.getApkurl:" + updateInfo.getApkurl());
+                LogUtil.v(TAG,"updateInfo.getApkUrl:" + updateInfo.getApkUrl());
 
                 if (getVersionName().equals(updateInfo.getVersion())) {
                     //没有新版本

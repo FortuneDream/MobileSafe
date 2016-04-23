@@ -1,6 +1,5 @@
 package com.example.dell.mobilesafe.view;
 
-import android.view.WindowManager;
 
 /**
  * Created by Q on 2016/4/13.

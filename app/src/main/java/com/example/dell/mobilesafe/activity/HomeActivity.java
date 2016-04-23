@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.bean.HomeItem;
+import com.example.dell.mobilesafe.utils.LogUtil;
 import com.example.dell.mobilesafe.utils.MD5;
 
 import java.util.ArrayList;
@@ -31,7 +32,6 @@ import java.util.List;
  */
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
-    private GridView gridView;
     private SharedPreferences sharedPreferences;
     private AlertDialog dialog;
     private List<HomeItem> homeItemList=new ArrayList<HomeItem>();
@@ -43,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initIco();
-        gridView = (GridView) findViewById(R.id.grid_home);
+        GridView gridView = (GridView) findViewById(R.id.grid_home);
         sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);//config表示保存的文件名字，以xml保存在data文件下
         HomeGridAdapter adapter = new HomeGridAdapter();
         gridView.setAdapter(adapter);
@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent;
-                //参数一 gridview，参数二具体的某个View，positon位置，id
+                //参数一 gridView，参数二具体的某个View，position位置，id
                 switch (position) {
 
                     case 0:
@@ -59,6 +59,10 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case 1:
                         intent=new Intent(HomeActivity.this,CallSmsSafeActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        intent=new Intent(HomeActivity.this,APPManagerActivity.class);
                         startActivity(intent);
                         break;
                     case 7:
@@ -144,7 +148,7 @@ public class HomeActivity extends AppCompatActivity {
                     editor.putString("password", MD5.encode(password));//使用MD5加密
                     editor.apply();
                     dialog.dismiss();
-                    Log.e(TAG, "保存密码，消掉对话框，进入手机防盗页面");
+                    LogUtil.e(TAG, "保存密码，消掉对话框，进入手机防盗页面");
                     Intent intent = new Intent(HomeActivity.this, LostFindActivity.class);
                     startActivity(intent);
                 } else {

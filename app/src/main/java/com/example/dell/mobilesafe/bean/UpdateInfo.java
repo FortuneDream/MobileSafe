@@ -6,7 +6,7 @@ package com.example.dell.mobilesafe.bean;
 public class UpdateInfo {
     private String version;
     private String decription;
-    private String apkurl;
+    private String apkUrl;
 
     public String getDecription() {
         return decription;
@@ -24,11 +24,11 @@ public class UpdateInfo {
         this.version = version;
     }
 
-    public String getApkurl() {
-        return apkurl;
+    public String getApkUrl() {
+        return apkUrl;
     }
 
-    public void setApkurl(String apkurl) {
-        this.apkurl = apkurl;
+    public void setApkUrl(String apkurl) {
+        this.apkUrl = apkurl;
     }
 }

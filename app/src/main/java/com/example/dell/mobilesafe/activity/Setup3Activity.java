@@ -19,7 +19,7 @@ public class Setup3Activity extends BaseSetupActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup3);
-        String number = sharedPreferences.getString("number", "");//sp取出数据一般在oncreate方法中执行
+        String number = sharedPreferences.getString("number", "");//sp取出数据一般在onCreate方法中执行
         selectedPeopleBtn = (Button) findViewById(R.id.btn_selected_people);
         numberEdt = (EditText) findViewById(R.id.edt_number);
         assert numberEdt != null;
@@ -29,7 +29,7 @@ public class Setup3Activity extends BaseSetupActivity {
             public void onClick(View v) {
                 //进入联系人列表
                 Intent intent = new Intent(Setup3Activity.this, SelectContactActivity.class);
-                startActivityForResult(intent, 0);//需要新Acitivity返回数据的时候使用
+                startActivityForResult(intent, 0);//需要新Activity返回数据的时候使用
             }
         });
     }

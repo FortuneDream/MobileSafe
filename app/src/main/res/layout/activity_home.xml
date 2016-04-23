@@ -9,7 +9,7 @@
       style="@style/title_one"
         android:text="主页面" />
 
-    <com.example.dell.mobilesafe.view.FocuseTestView
+    <com.example.dell.mobilesafe.view.FocusTestView
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="浙江温州最大皮革厂，江南皮革厂倒闭了，王八蛋老板，黄鹤，吃、喝、嫖，赌，欠下了3.5个亿，带着他的小姨子跑了。

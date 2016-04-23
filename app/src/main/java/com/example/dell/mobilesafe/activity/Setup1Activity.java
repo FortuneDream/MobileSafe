@@ -17,7 +17,7 @@ public class Setup1Activity extends BaseSetupActivity {
         Intent intent = new Intent(this, Setup2Activity.class);
         startActivity(intent);
         finish();
-        //在finish（）之后使用，第二个Activity从右边进来，然后第二个Activity往左边出去（即第三个Acitivity进来）
+        //在finish（）之后使用，第二个Activity从右边进来，然后第二个Activity往左边出去（即第三个Activity进来）
         overridePendingTransition(R.anim.translate_next_in, R.anim.translate_next_out);
     }
 

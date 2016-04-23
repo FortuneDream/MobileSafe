@@ -37,7 +37,7 @@ public class SettingItemView extends RelativeLayout {
         updateOff=attrs.getAttributeValue("http://schemas.android.com/apk/res-auto","update_off");
         updateOn=attrs.getAttributeValue("http://schemas.android.com/apk/res-auto", "update_on");
         titlesTxt.setText(titles);//默认
-        setDecription(updateOff);//默认
+        setDescription(updateOff);//默认
     }
 
     //代码中实例化
@@ -66,14 +66,14 @@ public class SettingItemView extends RelativeLayout {
         //当checkBox被勾选或者没有被勾选的时候，也表示了组合控件是否被选中，动态设置组合控件的状态，提示信息等
         checkBox.setChecked(isChecked);
         if (isChecked()){
-            setDecription(updateOn);
+            setDescription(updateOn);
         }else {
-            setDecription(updateOff);
+            setDescription(updateOff);
         }
     }
 
     //设置描述信息
-    public void setDecription(String decription){
+    public void setDescription(String decription){
         descTxt.setText(decription);
     }
 

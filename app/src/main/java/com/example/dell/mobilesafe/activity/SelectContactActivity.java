@@ -71,7 +71,7 @@ public class SelectContactActivity extends AppCompatActivity {
         }
         if (cursor.moveToFirst()){
             do {
-                Map<String,String> map=new HashMap<String,String>();
+                Map<String,String> map=new HashMap<>();
                 String name=cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                 String number=cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)).replace(" ","");
                 map.put("name",name);
@@ -79,6 +79,7 @@ public class SelectContactActivity extends AppCompatActivity {
                 maps.add(map);
             }while (cursor.moveToNext());
         }
+        cursor.close();
         return maps;
     }
 

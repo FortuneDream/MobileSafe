@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--image设置固定值，解决大小不一的问题-->
+    <ImageView
+        android:id="@+id/img_ico"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/txt_name"
+        style="@style/text_content_style"
+        android:layout_toRightOf="@+id/img_ico"
+        android:text="名字" />
+
+    <TextView
+        android:layout_toRightOf="@+id/img_ico"
+        android:id="@+id/txt_location"
+        style="@style/text_content_style"
+        android:textColor="@color/divider"
+        android:layout_below="@id/txt_name"
+        android:text="位置" />
+
+</RelativeLayout>

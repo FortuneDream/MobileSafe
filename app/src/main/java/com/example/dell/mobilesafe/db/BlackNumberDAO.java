@@ -4,8 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.SystemClock;
-import android.text.method.NumberKeyListener;
 
 import com.example.dell.mobilesafe.bean.BlackNumberInfo;
 
@@ -58,6 +56,7 @@ public class BlackNumberDAO {
         if (cursor.moveToNext()){
             result=true;
         }
+        cursor.close();
         return  result;//返回true表示已找到
     }
 
@@ -67,6 +66,7 @@ public class BlackNumberDAO {
         if (cursor.moveToNext()){
             result=cursor.getString(0);
         }
+        cursor.close();
         return result;
     }
 
@@ -79,6 +79,7 @@ public class BlackNumberDAO {
             info.setMode(cursor.getString(cursor.getColumnIndex("mode")));
             infos.add(info);
         }//得到所有的黑名单信息
+        cursor.close();
         return  infos;
     }
 
@@ -93,6 +94,7 @@ public class BlackNumberDAO {
             info.setMode(cursor.getString(cursor.getColumnIndex("mode")));
             infos.add(info);
         }//得到所有的黑名单信息
+        cursor.close();
         return infos;
     }
     public int queryCount(){
@@ -101,6 +103,7 @@ public class BlackNumberDAO {
         while(cursor.moveToNext()){
             result=cursor.getInt(0);//得到第0列
         }
+        cursor.close();
         return  result;
     }
 

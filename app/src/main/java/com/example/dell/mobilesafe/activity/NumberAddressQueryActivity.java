@@ -1,6 +1,7 @@
 package com.example.dell.mobilesafe.activity;
 
 
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,12 +11,16 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.dell.mobilesafe.R;
+import com.example.dell.mobilesafe.utils.LogUtil;
 
 public class NumberAddressQueryActivity extends AppCompatActivity {
+    private static final String TAG = "NumerAddressQueryActivity";
     private EditText numberEdt;
     private TextView resultTxt;
-//    private Vibrator vibrator;//振动器
+
+    //    private Vibrator vibrator;//振动器
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,25 +30,25 @@ public class NumberAddressQueryActivity extends AppCompatActivity {
 
     private void initView() {
 //        vibrator= (Vibrator) getSystemService(VIBRATOR_SERVICE);//震动服务
-        numberEdt= (EditText) findViewById(R.id.edt_number);
-        resultTxt= (TextView) findViewById(R.id.txt_result);
+        numberEdt = (EditText) findViewById(R.id.edt_number);
+        resultTxt = (TextView) findViewById(R.id.txt_result);
     }
 
     //查询电话号码的归属地
-    public void query(View view){
+    public void query(View view) {
         /**
          * 1.得到电话号码
          * 2.判断是否为空
          * 3.查询
          */
-        String number=numberEdt.getText().toString().trim();
-        if (TextUtils.isEmpty(number)){
-            Animation shake= AnimationUtils.loadAnimation(this,R.anim.shake);//输入为空的，抖动效果
+        String number = numberEdt.getText().toString().trim();
+        if (TextUtils.isEmpty(number)) {
+            Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);//输入为空的，抖动效果
             numberEdt.startAnimation(shake);
-            Toast.makeText(this,"号码不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "号码不能为空", Toast.LENGTH_SHORT).show();
 //            vibrator.vibrate(2000);//震动两秒
-        }else {
-            System.out.println("你要查询的电话号码为："+number);
+        } else {
+            LogUtil.v(TAG, "你要查询的电话号码为：" + number);
         }
     }
 }

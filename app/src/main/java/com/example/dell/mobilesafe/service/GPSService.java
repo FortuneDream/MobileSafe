@@ -12,22 +12,18 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
-import android.widget.TextView;
 
 public class GPSService extends Service {
-    private TextView positionTxt;
     private LocationManager locationManager;
-    private String provider;
     private SharedPreferences sharedPreferences;
     private LocationListener listener;
-    ;
 
     @Override
     public void onCreate() {
         super.onCreate();
         sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        listener = new MyLocationListenner();
+        listener = new MyLocationListener();
 
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -46,15 +42,15 @@ public class GPSService extends Service {
 
     }
 
-    class MyLocationListenner implements LocationListener {
+    class MyLocationListener implements LocationListener {
 
         @Override
         public void onLocationChanged(Location location) {
-            String longtitude = String.valueOf(location.getLongitude());
+            String longitude = String.valueOf(location.getLongitude());
             String latitude = String.valueOf(location.getLatitude());
             String accuracy = String.valueOf(location.getAccuracy());
             SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putString("lastlocation", longtitude+" "+latitude+" "+accuracy);
+            edit.putString("lastLocation", longitude+" "+latitude+" "+accuracy);
             edit.apply();
         }
 

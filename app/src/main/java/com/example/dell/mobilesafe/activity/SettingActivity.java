@@ -14,7 +14,7 @@ public class SettingActivity extends AppCompatActivity {
     private SettingItemView interruptListItemView;
     private SettingItemView autoUpdateItemView;
     private SharedPreferences sharedPreferences;
-    private Intent blackNumerIntent;
+    private Intent blackNumberIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,18 +26,18 @@ public class SettingActivity extends AppCompatActivity {
         Boolean update=sharedPreferences.getBoolean("update", false);
         autoUpdateItemView.setChecked(update);//使用保存的勾选状态
 
-        blackNumerIntent=new Intent(this, CallSmsSafeService.class);
+        blackNumberIntent =new Intent(this, CallSmsSafeService.class);
         //boolean blackNumberService= ServiceStatesUtils.isRunningService(this,"com.example.dell.mobilesafe.service.CallSmsSafeService");//检测是否在运行
-        //interruptListItemView.setchecked(blackNumberService);
+        //interruptListItemView.setChecked(blackNumberService);
         interruptListItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (interruptListItemView.isChecked()){
                     interruptListItemView.setChecked(false);
-                    stopService(blackNumerIntent);
+                    stopService(blackNumberIntent);
                 }else {
                     interruptListItemView.setChecked(true);
-                    startService(blackNumerIntent);
+                    startService(blackNumberIntent);
                 }
             }
         });
@@ -53,7 +53,7 @@ public class SettingActivity extends AppCompatActivity {
                     autoUpdateItemView.setChecked(true);
                     editor.putBoolean("update",true);
                 }
-                editor.apply();//shareprefence保存状态
+                editor.apply();//sharePreferences保存状态
             }
         });
     }
@@ -62,6 +62,6 @@ public class SettingActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         //boolean blackNumberService= ServiceStatesUtils.isRunningService(this,"com.example.dell.mobilesafe.service.CallSmsSafeService");//检测是否在运行
-        //interruptListItemView.setchecked(blackNumberService);
+        //interruptListItemView.setChecked(blackNumberService);
     }
 }

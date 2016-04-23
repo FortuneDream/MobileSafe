@@ -7,7 +7,7 @@ import android.widget.TextView;
 /**
  * Created by Q on 2016/4/5.
  */
-public class FocuseTestView extends TextView {
+public class FocusTestView extends TextView {
 
     /**
      *实现功能，自带焦点
@@ -15,12 +15,12 @@ public class FocuseTestView extends TextView {
      * @param attrs 加上这个，布局文件使用某个控件，默认会调用带有两个参数的构造方法
      * @param defStyleAttr 再加上这个，样式
      */
-    public FocuseTestView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public FocusTestView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     //java默认的构造器是空的，所以必须要加这个构造器
-    public FocuseTestView(Context context, AttributeSet attrs) {
+    public FocusTestView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
