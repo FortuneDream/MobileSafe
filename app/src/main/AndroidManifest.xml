@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dell.mobilesafe"
     android:installLocation="auto">
-    <!--设置安装位置，内部还是外部，auto先内部，后外部-->
+
+    <!-- 设置安装位置，内部还是外部，auto先内部，后外部 -->
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -100,7 +101,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.APPManagerActivity"></activity>
+        <activity android:name=".activity.APPManagerActivity" />
+        <activity android:name=".activity.TaskManagerActivity"></activity>
     </application>
 
 </manifest>

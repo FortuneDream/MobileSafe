@@ -28,7 +28,7 @@ public class LostFindActivity extends AppCompatActivity {
             String sim = sharedPreferences.getString("sim", "");
             if (TextUtils.isEmpty(sim)) {
                 softNumberTxt.setText("请添加号码");
-                lockImg.setImageResource(R.drawable.ico_releaselock);
+                lockImg.setImageResource(R.drawable.ico_release_lock);
             } else {
                 String softNumber = sharedPreferences.getString("number", "");
                 softNumberTxt.setText(softNumber);
@@ -36,7 +36,7 @@ public class LostFindActivity extends AppCompatActivity {
                 if (protecting) {
                     lockImg.setImageResource(R.drawable.ico_addlock);
                 } else {
-                    lockImg.setImageResource(R.drawable.ico_releaselock);
+                    lockImg.setImageResource(R.drawable.ico_release_lock);
                 }
             }
 

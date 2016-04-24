@@ -11,9 +11,9 @@
     <TextView
         android:onClick="numberAddressQuery"
         android:gravity="center_vertical"
-        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:drawableStart="@android:drawable/ic_menu_camera"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="归属地查询"
@@ -24,9 +24,9 @@
     <TextView
         android:onClick="smsBackUp"
         android:gravity="center_vertical"
-        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:drawableStart="@android:drawable/ic_menu_camera"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="短信备份"

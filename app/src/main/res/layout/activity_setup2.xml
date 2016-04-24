@@ -4,7 +4,6 @@
     xmlns:yq="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroudWhite"
     android:orientation="vertical"
     tools:context="com.example.dell.mobilesafe.activity.Setup1Activity">
 
@@ -17,7 +16,7 @@
     <TextView
         style="@style/text_content_style"
         android:text="通过绑定SIM卡：\n重启手机时，若发现SIM卡变化即发送报警短信"
-        android:gravity="left"/>
+        android:gravity="start"/>
 
     <com.example.dell.mobilesafe.view.SettingItemView
         android:id="@+id/siv_bind_sim"

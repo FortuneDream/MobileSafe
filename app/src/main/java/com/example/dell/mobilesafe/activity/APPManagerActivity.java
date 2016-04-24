@@ -171,15 +171,15 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
         dismissPopupWindow();
         switch (v.getId()) {
             case R.id.pop_item_launch:
-                LogUtil.d(TAG,"LaunchPopupWindow");
+                LogUtil.d(TAG, "LaunchPopupWindow");
                 launch();
                 break;
             case R.id.pop_item_delete:
-                LogUtil.d(TAG,"DeletePopupWindow");
+                LogUtil.d(TAG, "DeletePopupWindow");
                 uninstall();
                 break;
             case R.id.pop_item_share:
-                LogUtil.d(TAG,"SharePopupWindow");
+                LogUtil.d(TAG, "SharePopupWindow");
                 share();
                 break;
             default:
@@ -189,28 +189,28 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
 
     private void launch() {
         //包管理器
-        Intent intent=getPackageManager().getLaunchIntentForPackage(appInfo.getPackName());
+        Intent intent = getPackageManager().getLaunchIntentForPackage(appInfo.getPackName());
         startActivity(intent);
     }
 
     //分享到微博，微信，陌陌,qq空间
     private void share() {
-        Intent intent =new Intent("android.intent.action.SEND");
+        Intent intent = new Intent("android.intent.action.SEND");
         intent.addCategory("android.intent.category.DEFAULT");
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT,"推荐一款app："+appInfo.getName()+"。下载地址为:"+"....");
+        intent.putExtra(Intent.EXTRA_TEXT, "推荐一款app：" + appInfo.getName() + "。下载地址为:" + "....");
         startActivity(intent);
     }
 
     private void uninstall() {
-        if (appInfo.isUser()){
-            Intent intent=new Intent();
+        if (appInfo.isUser()) {
+            Intent intent = new Intent();
             intent.setAction("android.intent.action.DELETE");
             intent.addCategory("android.intent.category.DEFAULT");
-            intent.setData(Uri.parse("package:"+appInfo.getPackName()));
-            startActivityForResult(intent,0);//使得卸载之后刷新页面
-        }else {
-            Toast.makeText(APPManagerActivity.this,"系统应用需要ROOT权限才能卸载",Toast.LENGTH_SHORT).show();
+            intent.setData(Uri.parse("package:" + appInfo.getPackName()));
+            startActivityForResult(intent, 0);//使得卸载之后刷新页面
+        } else {
+            Toast.makeText(APPManagerActivity.this, "系统应用需要ROOT权限才能卸载", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -258,13 +258,13 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
             ViewHolder viewHolder;
             //数据源
             if (position == 0) {
-                view=View.inflate(APPManagerActivity.this,R.layout.item_txt_list,null);
-                TextView textView= (TextView) view.findViewById(R.id.txt_state);
+                view = View.inflate(APPManagerActivity.this, R.layout.item_txt_list, null);
+                TextView textView = (TextView) view.findViewById(R.id.txt_state);
                 textView.setText("用户程序(" + userAppInfoList.size() + ")");
                 return textView;
             } else if (position == (userAppInfoList.size() + 1)) {
-                view=View.inflate(APPManagerActivity.this,R.layout.item_txt_list,null);
-                TextView textView= (TextView) view.findViewById(R.id.txt_state);
+                view = View.inflate(APPManagerActivity.this, R.layout.item_txt_list, null);
+                TextView textView = (TextView) view.findViewById(R.id.txt_state);
                 textView.setText("系统程序(" + systemAppInfoList.size() + ")");
                 return textView;
             } else if (position <= userAppInfoList.size()) {

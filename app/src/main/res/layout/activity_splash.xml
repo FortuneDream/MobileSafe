@@ -8,6 +8,16 @@
     tools:context=".activity.SplashActivity">
 
     <TextView
+        android:textColor="@color/colorAccent"
+        android:id="@+id/txt_label"
+        android:layout_centerInParent="true"
+        android:text="手机安全卫士"
+        android:textSize="28sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+    <TextView
+        android:layout_below="@id/txt_label"
         android:id="@+id/txt_splash_version"
         android:shadowColor="#ff0000"
         android:shadowDx="1"
@@ -26,7 +36,7 @@
         android:layout_centerHorizontal="true"
         />
     <ProgressBar
-        android:id="@+id/prb_updateapk"
+        android:id="@+id/prb_update_apk"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

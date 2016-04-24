@@ -7,7 +7,6 @@
     tools:context="com.example.dell.mobilesafe.activity.LockScreenActivity">
 
     <Button
-        android:onClick="lockScreen"
         android:id="@+id/lock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,8 +18,7 @@
         android:layout_height="wrap_content"
         android:text="开启设备管理员" />
     <Button
-        android:onClick="uninstall"
-        android:id="@+id/unistall"
+        android:id="@+id/uninstall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="卸载" />

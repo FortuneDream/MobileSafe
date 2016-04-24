@@ -8,7 +8,7 @@
 
     <TextView
         style="@style/title_one"
-        android:text="应用管理" />
+        android:text="进程管理" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,47 +16,51 @@
 
         <!--data目录下-->
         <TextView
-            android:id="@+id/txt_rom"
+            android:id="@+id/txt_run_process_count"
             style="@style/text_content_style"
-            android:text="内存可用" />
+            android:text="运行中的进程" />
 
         <TextView
-            android:layout_marginEnd="10dp"
-            android:id="@+id/txt_sd_card"
+            android:id="@+id/txt_avail_ram"
             style="@style/text_content_style"
-            android:layout_alignParentEnd="true"
-            android:text="sd卡可用" />
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="10dp"
+            android:text="剩余/总内存" />
     </RelativeLayout>
     <!--当需要加载的时候，用真布局包裹list+progressdialog-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
+
         <LinearLayout
             android:id="@+id/ll_loading"
-            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:visibility="invisible">
+
             <ProgressBar
                 android:id="@+id/pgb_loading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
             <TextView
-                android:text="正在加载中...."
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="正在加载中...." />
         </LinearLayout>
         <!--浮动的bar-->
         <TextView
-            android:background="@color/text_s"
             android:id="@+id/txt_state"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/text_s"
             android:textSize="@dimen/text_ss" />
 
     </FrameLayout>

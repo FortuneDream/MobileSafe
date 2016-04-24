@@ -3,13 +3,10 @@ package com.example.dell.mobilesafe.activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.location.LocationListener;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.receiver.DeviceReceiver;
 
 public class LockScreenActivity extends AppCompatActivity {

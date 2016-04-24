@@ -22,12 +22,12 @@
         <Button
             style="@style/text_content_style"
             android:onClick="addBlackNumber"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:text="添加" />
     </RelativeLayout>
     <View
       style="@style/divider"/>
-    <!--用真布局，包裹一个listview和一个progress，让progress在上面先显示，然后listview加载完毕后，progress设置为invisible-->
+    <!--用真布局，包裹一个listView和一个progress，让progress在上面先显示，然后listview加载完毕后，progress设置为invisible-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

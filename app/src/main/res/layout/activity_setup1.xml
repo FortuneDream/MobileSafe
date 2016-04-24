@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
     android:orientation="vertical"
     tools:context="com.example.dell.mobilesafe.activity.Setup1Activity">
 
@@ -18,22 +17,22 @@
 
     <TextView
         style="@style/text_content_style"
-        android:drawableLeft="@android:drawable/star_big_on"
+        android:drawableStart="@android:drawable/star_big_on"
         android:text="Sim卡变更报警" />
 
     <TextView
         style="@style/text_content_style"
-        android:drawableLeft="@android:drawable/star_big_on"
+        android:drawableStart="@android:drawable/star_big_on"
         android:text="GPS追踪" />
 
     <TextView
         style="@style/text_content_style"
-        android:drawableLeft="@android:drawable/star_big_on"
+        android:drawableStart="@android:drawable/star_big_on"
         android:text="远程数据销毁" />
 
     <TextView
         style="@style/text_content_style"
-        android:drawableLeft="@android:drawable/star_big_on"
+        android:drawableStart="@android:drawable/star_big_on"
         android:text="远程锁屏" />
 
     <LinearLayout

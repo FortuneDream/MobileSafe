@@ -79,7 +79,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         mSharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
         splashVersionTxt = (TextView) findViewById(R.id.txt_splash_version);
-        updateApkPrb = (ProgressBar) findViewById(R.id.prb_updateapk);
+        updateApkPrb = (ProgressBar) findViewById(R.id.prb_update_apk);
         assert splashVersionTxt != null;
         //设置版本名称
         splashVersionTxt.setText("版本名" + getVersionName());

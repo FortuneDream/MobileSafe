@@ -3,7 +3,6 @@ package com.example.dell.mobilesafe;
 import android.app.Application;
 import android.test.ApplicationTestCase;
 
-import com.example.dell.mobilesafe.db.BlackNumberDBOpenHelper;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
