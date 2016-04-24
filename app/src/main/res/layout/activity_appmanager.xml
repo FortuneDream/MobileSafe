@@ -53,11 +53,11 @@
         </LinearLayout>
         <!--浮动的bar-->
         <TextView
+            android:background="@color/text_s"
             android:id="@+id/txt_state"
-            android:background="#FF0000FF"
-            android:textColor="#ffffff"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_ss" />
 
     </FrameLayout>
 

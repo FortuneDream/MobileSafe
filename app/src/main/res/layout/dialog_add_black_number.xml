@@ -12,14 +12,15 @@
         android:background="#66ff6600"
         android:gravity="center"
         android:text="请输入拦截号码"
-        android:textSize="18sp" />
+        android:textSize="@dimen/title" />
 
     <EditText
         android:id="@+id/edt_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:singleLine="true"
         android:hint="请输入电话号码"
-        android:inputType="textPassword" />
+        android:inputType="phone" />
 
     <!--单选-->
     <RadioGroup

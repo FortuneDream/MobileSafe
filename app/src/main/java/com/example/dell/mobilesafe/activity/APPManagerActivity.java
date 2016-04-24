@@ -1,9 +1,6 @@
 package com.example.dell.mobilesafe.activity;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -261,16 +258,14 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
             ViewHolder viewHolder;
             //数据源
             if (position == 0) {
-                TextView textView = new TextView(APPManagerActivity.this);
-                textView.setBackgroundColor(Color.BLUE);
+                view=View.inflate(APPManagerActivity.this,R.layout.item_txt_list,null);
+                TextView textView= (TextView) view.findViewById(R.id.txt_state);
                 textView.setText("用户程序(" + userAppInfoList.size() + ")");
-                textView.setTextColor(Color.WHITE);
                 return textView;
             } else if (position == (userAppInfoList.size() + 1)) {
-                TextView textView = new TextView(APPManagerActivity.this);
-                textView.setBackgroundColor(Color.BLUE);
+                view=View.inflate(APPManagerActivity.this,R.layout.item_txt_list,null);
+                TextView textView= (TextView) view.findViewById(R.id.txt_state);
                 textView.setText("系统程序(" + systemAppInfoList.size() + ")");
-                textView.setTextColor(Color.WHITE);
                 return textView;
             } else if (position <= userAppInfoList.size()) {
                 //用户程序

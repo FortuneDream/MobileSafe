@@ -15,7 +15,8 @@
     <!--用样式的办法写XML，drawableLeft可直接在文字左边设置图片-->
     <TextView
         style="@style/text_content_style"
-        android:text="SIM卡变更后，\n报警短信回发给安全号码" />
+        android:text="SIM卡变更后：\n报警短信将发给安全号码"
+        android:gravity="left"/>
     <EditText
         android:id="@+id/edt_number"
         android:hint="请输入安全号码"

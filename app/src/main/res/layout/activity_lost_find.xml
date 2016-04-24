@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textSize="@dimen/text_size"
-            android:textColor="@color/textBlack"
+            android:textSize="@dimen/text"
+            android:textColor="@color/text"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:text="安全号码"
@@ -24,8 +24,8 @@
         <TextView
             android:id="@+id/txt_number"
             android:layout_alignParentRight="true"
-            android:textSize="@dimen/text_size"
-            android:textColor="@color/textBlack"
+            android:textSize="@dimen/text"
+            android:textColor="@color/text"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:text="xxxx"
@@ -39,8 +39,8 @@
         android:layout_height="wrap_content">
         <!--此TextView填充父窗体，使得整行生效-->
         <TextView
-            android:textSize="@dimen/text_size"
-            android:textColor="@color/textBlack"
+            android:textSize="@dimen/text"
+            android:textColor="@color/text"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:text="防盗保护是否开启"
@@ -71,8 +71,8 @@
             android:background="@drawable/selector_shape"
             android:onClick="reEnterSetting"
             android:clickable="true"
-            android:textSize="@dimen/text_size"
-            android:textColor="@color/textBlack"
+            android:textSize="@dimen/text"
+            android:textColor="@color/text"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:text="重新进入设置向导"
@@ -90,8 +90,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textSize="@dimen/text_size"
-            android:textColor="@color/textBlack"
+            android:textSize="@dimen/text"
+            android:textColor="@color/text"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:text="功能简介"

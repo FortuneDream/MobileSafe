@@ -9,7 +9,7 @@
     </style>
 
     <style name="text_content_style" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">10dp</item>
@@ -47,8 +47,8 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@color/title_light_blue</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/textBlack</item>
-        <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">@dimen/title</item>
     </style>
 
     <style name="divider" parent="Theme.AppCompat.Light.NoActionBar">

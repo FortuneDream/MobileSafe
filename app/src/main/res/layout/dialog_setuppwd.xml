@@ -11,7 +11,7 @@
         android:background="#66ff6600"
         android:gravity="center"
         android:text="请设置密码"
-        android:textSize="@dimen/text_size" />
+        android:textSize="@dimen/text" />
 
     <EditText
         android:inputType="textPassword"

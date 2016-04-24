@@ -11,7 +11,7 @@
         android:layout_height="55dp"
         android:background="#66ff6600"
         android:gravity="center"
-        android:text="请设置密码"
+        android:text="安全密码"
         android:textSize="18sp" />
 
     <EditText

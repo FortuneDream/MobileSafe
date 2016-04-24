@@ -23,7 +23,7 @@
         android:layout_toRightOf="@+id/img_ico"
         android:id="@+id/txt_location"
         style="@style/text_content_style"
-        android:textColor="@color/divider"
+        android:textColor="@color/text_s"
         android:layout_below="@id/txt_name"
         android:text="位置" />
 

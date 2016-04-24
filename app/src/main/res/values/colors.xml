@@ -3,9 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="textBlack">#000000</color>
-    <color name="divider">#55000000</color>
-    <color name="titleGreen">#8866ff00</color>
+    <color name="text">#212121</color>
+    <color name="text_s">#9E9E9E</color>
+    <color name="divider">#B6B6B6</color>
+    <color name="accent">#00BCD4</color>
     <color name="backgroudWhite">#ffffff</color>
     <color name="title_light_blue">#03A9F4</color>
 </resources>

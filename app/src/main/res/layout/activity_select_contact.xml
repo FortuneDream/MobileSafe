@@ -8,11 +8,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/titleGreen"
+        android:background="@color/title_light_blue"
         android:gravity="center"
         android:text="联系人"
-        android:textColor="@color/textBlack"
-        android:textSize="@dimen/title_size" />
+        android:textColor="@color/text"
+        android:textSize="@dimen/title" />
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

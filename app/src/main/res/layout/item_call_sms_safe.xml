@@ -10,17 +10,17 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:text="电话号码"
-        android:textColor="@color/textBlack"
-        android:textSize="@dimen/text_size" />
+        android:textColor="@color/text"
+        android:textSize="@dimen/text" />
 
     <TextView
         android:id="@+id/txt_mode"
-        android:textColor="@color/textBlack"
+        android:textColor="@color/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_number"
         android:layout_marginLeft="10dp"
-        android:textSize="@dimen/text_size_s" />
+        android:textSize="@dimen/text_s" />
     <ImageView
         android:src="@drawable/button_delete"
         android:id="@+id/img_delete"
