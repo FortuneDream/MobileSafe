@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -111,7 +112,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
         builder.setTitle("提示");
-        builder.setMessage(updateInfo.getDecription());
+        builder.setMessage(updateInfo.getDescription());
         builder.setNegativeButton("下次再说", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -204,7 +205,7 @@ public class SplashActivity extends AppCompatActivity {
                 //解析JSON
                 Gson gson = new Gson();
                 updateInfo = gson.fromJson(result, UpdateInfo.class);
-                LogUtil.v(TAG,"updateInfo.getApkUrl:" + updateInfo.getApkUrl());
+                LogUtil.v(TAG, "updateInfo.getApkUrl:" + updateInfo.getApkUrl());
 
                 if (getVersionName().equals(updateInfo.getVersion())) {
                     //没有新版本

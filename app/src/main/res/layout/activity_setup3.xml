@@ -7,25 +7,47 @@
     tools:context="com.example.dell.mobilesafe.activity.Setup1Activity">
 
     <TextView
-       style="@style/title_one"
+        style="@style/title_one"
         android:text="3.设置安全号码" />
 
     <!--用样式的办法写XML，drawableLeft可直接在文字左边设置图片-->
     <TextView
         style="@style/text_content_style"
-        android:text="SIM卡变更后：\n报警短信将发给安全号码"
-        android:gravity="start"/>
+        android:gravity="start"
+        android:text="SIM卡变更后：\n报警短信将发给安全号码" />
+
     <EditText
         android:id="@+id/edt_number"
-        android:hint="请输入安全号码"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/btn_selected_people"
-        android:text="选择联系人"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button"/>
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:hint="请输入安全号码" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_selected_contacts"
+            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="选择通讯录" />
+
+        <Button
+            android:layout_margin="10dp"
+            android:id="@+id/btn_selected_last_people"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="选择最近联系人" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -58,14 +80,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/bg_shouji" />
+
         <!--在backgroud中设置selector-->
         <!--因为四个界面都是3个相同的下一步按钮，所以设置为样式-->
         <Button style="@style/button_pre_style" />
+
         <Button style="@style/button_next_style" />
     </RelativeLayout>
 

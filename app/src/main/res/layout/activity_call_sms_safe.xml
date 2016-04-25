@@ -15,12 +15,19 @@
         android:layout_height="wrap_content">
 
         <TextView
-            style="@style/text_content_style"
-            android:layout_marginTop="20dp"
-            android:text="黑名单列表" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/text"
+            android:text="黑名单列表"
+            android:textSize="20sp"/>
 
         <Button
-            style="@style/text_content_style"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:onClick="addBlackNumber"
             android:layout_alignParentEnd="true"
             android:text="添加" />

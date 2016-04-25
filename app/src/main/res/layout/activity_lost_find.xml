@@ -106,9 +106,15 @@
         android:layout_height="@dimen/divider"/>
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text"
+        android:layout_margin="10dp"
+        android:text="当时手机丢失时，可用安全号码向本机发送以下短信内容，即可获得相应功能:"/>
+    <TextView
         style="@style/text_content_style"
         android:drawableStart="@android:drawable/star_big_on"
-        android:text="GPS追求：#Location#" />
+        android:text="定位追踪：#Location#" />
 
     <TextView
         style="@style/text_content_style"

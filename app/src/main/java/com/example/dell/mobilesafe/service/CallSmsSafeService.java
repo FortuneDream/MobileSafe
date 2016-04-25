@@ -114,7 +114,7 @@ public class CallSmsSafeService extends Service {
 //        try {
 //            Class clazz=CallSmsSafeService.class.getClassLoader().loadClass("android.os.ServiceManager");
 //            Method method=clazz.getMethod("getService",String.class);
-//            IBinder ibinder= (IBinder) method.invoke(null,TELEPHONY_SERVICE);
+//            IBinder iBinder= (IBinder) method.invoke(null,TELEPHONY_SERVICE);
 //
 //        } catch (Exception e) {
 //            e.printStackTrace();

@@ -8,40 +8,41 @@
     tools:context=".activity.SplashActivity">
 
     <TextView
-        android:textColor="@color/colorAccent"
         android:id="@+id/txt_label"
-        android:layout_centerInParent="true"
-        android:text="手机安全卫士"
-        android:textSize="28sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
+        android:text="手机安全卫士"
+        android:textColor="@color/colorAccent"
+        android:textSize="28sp" />
+
     <TextView
-        android:layout_below="@id/txt_label"
         android:id="@+id/txt_splash_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_label"
+        android:layout_centerInParent="true"
         android:shadowColor="#ff0000"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="1"
+        android:text="版本1.0"
         android:textColor="@color/text"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="版本1.0" />
+        android:textSize="18sp" />
+
     <ProgressBar
         android:layout_below="@id/txt_splash_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_centerHorizontal="true"/>
     <ProgressBar
         android:id="@+id/prb_update_apk"
-        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/txt_splash_version"
         android:max="100"
         android:progress="0"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 </RelativeLayout>

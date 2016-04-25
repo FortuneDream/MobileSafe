@@ -92,7 +92,7 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object obj = listView.getItemAtPosition(position);//通过position得到item，要重写getitem的方法
+                Object obj = listView.getItemAtPosition(position);//通过position得到item，要重写getItem的方法
                 if (obj != null) {
                     dismissPopupWindow();
                     View contentView = View.inflate(APPManagerActivity.this, R.layout.item_popup_window, null);
@@ -143,7 +143,7 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
         StatFs fs = new StatFs(path);
         long blocks = fs.getAvailableBlocksLong();//得到多少块可用空间
         long size = fs.getBlockSizeLong();//得到每一块多大
-        return Formatter.formatFileSize(this, blocks * size);//xxxx字节转化成MB,GB等
+        return Formatter.formatFileSize(this, blocks * size);//n字节转化成MB,GB等
     }
 
     private void loadingData() {
@@ -261,12 +261,12 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
                 view = View.inflate(APPManagerActivity.this, R.layout.item_txt_list, null);
                 TextView textView = (TextView) view.findViewById(R.id.txt_state);
                 textView.setText("用户程序(" + userAppInfoList.size() + ")");
-                return textView;
+                return view;
             } else if (position == (userAppInfoList.size() + 1)) {
                 view = View.inflate(APPManagerActivity.this, R.layout.item_txt_list, null);
                 TextView textView = (TextView) view.findViewById(R.id.txt_state);
                 textView.setText("系统程序(" + systemAppInfoList.size() + ")");
-                return textView;
+                return view;
             } else if (position <= userAppInfoList.size()) {
                 //用户程序
                 int newPosition = position - 1;
@@ -305,5 +305,11 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
         ImageView icoImg;
         TextView nameTxt;
         TextView locationTxt;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dismissPopupWindow();
     }
 }

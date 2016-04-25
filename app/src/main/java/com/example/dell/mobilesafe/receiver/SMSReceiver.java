@@ -46,12 +46,12 @@ public class SMSReceiver extends BroadcastReceiver {
                 //得到手机GPS定位
                 Intent gpsServiceIntent = new Intent(context, GPSService.class);
                 context.startService(gpsServiceIntent);//context.并且，注意此时的传入的intent不是参数的intent而是gpsServiceIntent
-                String longtitude = sharedPreferences.getString("lastLocation", "");
-                System.out.println("经度" + longtitude);
-                if (TextUtils.isEmpty(longtitude)) {
+                String longitude = sharedPreferences.getString("lastLocation", "");
+                System.out.println("经度" + longitude);
+                if (TextUtils.isEmpty(longitude)) {
                     SmsManager.getDefault().sendTextMessage(sender, null, "没有得到地理信息", null, null);
                 } else {
-                    SmsManager.getDefault().sendTextMessage(sender, null, longtitude, null, null);
+                    SmsManager.getDefault().sendTextMessage(sender, null, longitude, null, null);
                 }
                 abortBroadcast();
             } else if ("#Alarm#".equals(body)) {

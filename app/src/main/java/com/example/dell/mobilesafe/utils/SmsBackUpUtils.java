@@ -18,10 +18,13 @@ import java.io.FileOutputStream;
 public class SmsBackUpUtils {
 
 
+    private static final String TAG = "SmsBackUpUtils";
+
     //短信备份接口
-    public  interface  SmsBackUpCallBack{
+    public interface SmsBackUpCallBack {
         //短信备份前调用，total短信总条数
         void smsBackUpBefore(int total);
+        void smsBackUpFinish();
         //备份过程中执行
         void smsBackUpProgress(int progress);
     }
@@ -39,10 +42,8 @@ public class SmsBackUpUtils {
         xmlSerializer.startTag(null, "smss");//命名空间
         Uri uri = Uri.parse("content://sms");
         Cursor cursor = resolver.query(uri, new String[]{"address", "date", "type", "body"}, null, null, null);
-        System.out.println("正准备执行getcount");
         callBack.smsBackUpBefore(cursor.getCount());//回调的方法
-        System.out.println("已经执行getcount");
-        int progress=0;//设置进度
+        int progress = 0;//设置进度
         while (cursor.moveToNext()) {
             xmlSerializer.startTag(null, "sms");
 
@@ -68,12 +69,10 @@ public class SmsBackUpUtils {
 
             xmlSerializer.endTag(null, "sms");
 
-            SystemClock.sleep(4000);
             progress++;
-            System.out.println("正准备执行updateProgress");
             callBack.smsBackUpProgress(progress);//回调的方法
-            System.out.println("已经执行updateProgress");
         }
+        callBack.smsBackUpFinish();
         cursor.close();
         xmlSerializer.endTag(null, "smss");
         xmlSerializer.endDocument();

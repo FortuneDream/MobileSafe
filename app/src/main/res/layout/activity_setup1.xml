@@ -7,7 +7,7 @@
     tools:context="com.example.dell.mobilesafe.activity.Setup1Activity">
 
     <TextView
-       style="@style/title_one"
+        style="@style/title_one"
         android:text="1.欢迎使用手机防盗" />
 
     <!--用样式的办法写XML，drawableLeft可直接在文字左边设置图片-->
@@ -66,11 +66,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <TextView
+            android:id="@+id/txt_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tip:\n打开以上功能需要手动添加权限。点击以下按钮，找到本应用后，打开所有权限。（设备管理员用于开启“远程锁屏”功能）" />
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/bg_androidsuo" />
+            android:layout_below="@id/txt_tip">
+
+            <Button
+                android:id="@+id/btn_authority"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/button"
+                android:text="开启应用权限" />
+
+            <Button
+                android:id="@+id/btn_manage"
+                android:layout_margin="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:text="开启设备管理员" />
+
+        </RelativeLayout>
+
         <!--在backgroud中设置selector-->
         <!--因为四个界面都是3个相同的下一步按钮，所以设置为样式-->
         <Button style="@style/button_next_style" />

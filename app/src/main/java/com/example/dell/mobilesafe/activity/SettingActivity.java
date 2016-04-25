@@ -58,10 +58,4 @@ public class SettingActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //boolean blackNumberService= ServiceStatesUtils.isRunningService(this,"com.example.dell.mobilesafe.service.CallSmsSafeService");//检测是否在运行
-        //interruptListItemView.setChecked(blackNumberService);
-    }
 }

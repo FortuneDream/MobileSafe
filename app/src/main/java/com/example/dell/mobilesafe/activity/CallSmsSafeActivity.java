@@ -38,7 +38,7 @@ public class CallSmsSafeActivity extends AppCompatActivity {
     private List<BlackNumberInfo> infos;
     private boolean isLoading=false;
     private AlertDialog dialog;
-    private Handler mhandler = new Handler() {
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             isLoading=false;
@@ -79,7 +79,7 @@ public class CallSmsSafeActivity extends AppCompatActivity {
                     //addALL在原来的基础上，再添加数据
                     infos.addAll(blackNumberDAO.queryPart(index));
                 }
-                mhandler.sendEmptyMessage(0);//子线程加载完毕后，发消息，然后设置adapter,
+                mHandler.sendEmptyMessage(0);//子线程加载完毕后，发消息，然后设置adapter,
                 //只是利用子线程优化，仅仅只能让用户早一点进入黑名单Activity，但是此时还不能得到黑名单的列表，需要等待子线程加载完毕了才可以看到黑名单列表
                 //可以使用显示一个加载样式，来提示用户正在加载，然后加载完毕后，样式消失
             }
@@ -102,14 +102,14 @@ public class CallSmsSafeActivity extends AppCompatActivity {
                             return;
                         }
                         //得到最后看到的位置
-                        int lastPostion=listView.getLastVisiblePosition();//从0开始->19
+                        int lastPosition=listView.getLastVisiblePosition();//从0开始->19
                         int totalSize=infos.size();//此时数据源的大小,最初为20
                         //加载完毕
                         if (index>=count){
                             Toast.makeText(getApplicationContext(),"没有数据了",Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        if (lastPostion==(totalSize-1)){
+                        if (lastPosition==(totalSize-1)){
                             index+=20;//再加载20条
                             isLoading=true;//只能在这个if条语句中,如果写在外面，那么当没有滑动到最后一条时，is=true，此时，再滑动就一直在前面的if条件下return
                             loadingPartList();

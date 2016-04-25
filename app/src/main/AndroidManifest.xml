@@ -102,7 +102,7 @@
             android:exported="true" />
 
         <activity android:name=".activity.APPManagerActivity" />
-        <activity android:name=".activity.TaskManagerActivity"></activity>
+        <activity android:name=".activity.TaskManagerActivity"/>
     </application>
 
 </manifest>

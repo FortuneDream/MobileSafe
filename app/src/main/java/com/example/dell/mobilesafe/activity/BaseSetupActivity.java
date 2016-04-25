@@ -45,8 +45,8 @@ public abstract class BaseSetupActivity  extends AppCompatActivity {
         });
     }
 
-    public abstract void showNext();//变成抽象方法，让子类实现,聚体从哪个页面跳转到哪个页面
-    public abstract void showPre();
+    protected abstract void showNext();//变成抽象方法，让子类实现,聚体从哪个页面跳转到哪个页面
+    protected abstract void showPre();
 
 
     @Override

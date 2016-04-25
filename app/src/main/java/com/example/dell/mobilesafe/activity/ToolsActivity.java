@@ -15,6 +15,8 @@ import java.io.File;
 
 public class ToolsActivity extends AppCompatActivity {
 
+    private static final String TAG = "ToolsActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,7 @@ public class ToolsActivity extends AppCompatActivity {
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
                 final File file=new File(Environment.getExternalStorageDirectory(),"smsBackUp.xml");
                 final ProgressDialog dialog=new ProgressDialog(ToolsActivity.this);//弹出一个进度框
-                dialog.setMessage("正在备份短信");
+                dialog.setMessage("正在备份短信...");
                 dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);//设置为水平进度框
                 dialog.show();
                 new Thread(){
@@ -47,9 +49,20 @@ public class ToolsActivity extends AppCompatActivity {
                                     dialog.setMax(total);
                                 }
 
+
                                 @Override
                                 public void smsBackUpProgress(int progress) {
                                         dialog.setProgress(progress);
+
+                                }
+                                @Override
+                                public void smsBackUpFinish() {
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(ToolsActivity.this,"短信备份完毕",Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
                                 }
                             });
                         } catch (Exception e) {

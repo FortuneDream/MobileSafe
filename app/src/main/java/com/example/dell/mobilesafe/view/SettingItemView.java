@@ -74,8 +74,8 @@ public class SettingItemView extends RelativeLayout {
     }
 
     //设置描述信息
-    public void setDescription(String decription) {
-        descTxt.setText(decription);
+    public void setDescription(String description) {
+        descTxt.setText(description);
     }
 
 

@@ -65,7 +65,7 @@ public class TaskManagerActivity extends AppCompatActivity {
             return null;
         }
     }
-    static  class ViewHolder{
+    private static  class ViewHolder{
 
     }
 }

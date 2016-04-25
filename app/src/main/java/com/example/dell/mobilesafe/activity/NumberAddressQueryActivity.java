@@ -14,7 +14,7 @@ import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.utils.LogUtil;
 
 public class NumberAddressQueryActivity extends AppCompatActivity {
-    private static final String TAG = "NumerAddressQueryActivity";
+    private static final String TAG = "NumberAddressQueryActivity";
     private EditText numberEdt;
     private TextView resultTxt;
 

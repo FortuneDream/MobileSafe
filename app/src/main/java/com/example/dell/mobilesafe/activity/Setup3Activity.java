@@ -20,7 +20,7 @@ public class Setup3Activity extends BaseSetupActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup3);
         String number = sharedPreferences.getString("number", "");//sp取出数据一般在onCreate方法中执行
-        selectedPeopleBtn = (Button) findViewById(R.id.btn_selected_people);
+        selectedPeopleBtn = (Button) findViewById(R.id.btn_selected_contacts);
         numberEdt = (EditText) findViewById(R.id.edt_number);
         assert numberEdt != null;
         numberEdt.setText(number);
