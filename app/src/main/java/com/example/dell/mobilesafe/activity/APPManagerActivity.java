@@ -267,13 +267,6 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
                 TextView textView = (TextView) view.findViewById(R.id.txt_state);
                 textView.setText("系统程序(" + systemAppInfoList.size() + ")");
                 return view;
-            } else if (position <= userAppInfoList.size()) {
-                //用户程序
-                int newPosition = position - 1;
-                appInfo = userAppInfoList.get(newPosition);
-            } else {
-                int newPosition = position - userAppInfoList.size() - 2;
-                appInfo = systemAppInfoList.get(newPosition);
             }
 
 
@@ -288,6 +281,8 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
                 viewHolder.locationTxt = (TextView) view.findViewById(R.id.txt_location);
                 view.setTag(viewHolder);
             }
+
+            appInfo= (AppInfo) getItem(position);
             viewHolder.nameTxt.setText(appInfo.getName());
             viewHolder.icoImg.setImageDrawable(appInfo.getIco());
             if (appInfo.isRom()) {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yq="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/title_one"
+        android:text="进程设置" />
+
+    <com.example.dell.mobilesafe.view.SettingItemView
+        yq:titles="系统进程"
+        yq:update_off="显示"
+        yq:update_on="隐藏"
+        android:id="@+id/siv_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

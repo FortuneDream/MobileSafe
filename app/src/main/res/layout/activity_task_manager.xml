@@ -28,7 +28,9 @@
             android:text="剩余/总内存" />
     </RelativeLayout>
     <!--当需要加载的时候，用真布局包裹list+progressdialog-->
+    <!--权重设置为1,使底下的反选，全选可以显示出来-->
     <FrameLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -64,5 +66,47 @@
             android:textSize="@dimen/text_ss" />
 
     </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:background="@drawable/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="selectAll"
+            android:textSize="@dimen/text_ss"
+            android:text="全选"/>
+
+        <Button
+            android:background="@drawable/button"
+            android:text="反选"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="unSelect"
+            android:textSize="@dimen/text_ss" />
+
+        <Button
+            android:background="@drawable/button"
+            android:text="一键清理"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="killAll"
+            android:textSize="@dimen/text_ss" />
+
+        <Button
+            android:background="@drawable/button"
+            android:text="设置"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="reEnterSetting"
+            android:textSize="@dimen/text_ss" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_pop"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pop_bg"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/pop_item_launch"
+        android:textSize="12sp"
+        android:drawableTop="@drawable/pop_launch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="启动" />
+
+
+    <TextView
+        android:id="@+id/pop_item_share"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:drawableTop="@drawable/pop_share"
+        android:text="分享" />
+
+    <TextView
+        android:id="@+id/pop_item_delete"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:drawableTop="@drawable/pop_delete"
+        android:text="卸载" />
+
+</LinearLayout>
