@@ -65,11 +65,22 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appmanager);
+        initView();
+        setListener();
+        romTxt.setText("内存可用：" + getAvailSpace(Environment.getDataDirectory().getAbsolutePath()));//绝对路径
+        sdCardTxt.setText("sd卡可用：" + getAvailSpace(Environment.getExternalStorageDirectory().getAbsolutePath()));
+        loadingData();
+    }
+
+    private void initView() {
         stateTxt = (TextView) findViewById(R.id.txt_state);
         romTxt = (TextView) findViewById(R.id.txt_rom);
         sdCardTxt = (TextView) findViewById(R.id.txt_sd_card);
         listView = (ListView) findViewById(R.id.list_view);
         llLoading = (LinearLayout) findViewById(R.id.ll_loading);
+    }
+
+    private void setListener() {
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -125,9 +136,6 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
                 }
             }
         });
-        romTxt.setText("内存可用：" + getAvailSpace(Environment.getDataDirectory().getAbsolutePath()));//绝对路径
-        sdCardTxt.setText("sd卡可用：" + getAvailSpace(Environment.getExternalStorageDirectory().getAbsolutePath()));
-        loadingData();
     }
 
     //调出popupWindow

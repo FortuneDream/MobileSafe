@@ -19,8 +19,7 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        autoUpdateItemView = (SettingItemView) findViewById(R.id.siv_update);
-        interruptListItemView= (SettingItemView) findViewById(R.id.siv_interrupt);
+        initView();
         sharedPreferences=getSharedPreferences("config",MODE_PRIVATE);
 
         Boolean update=sharedPreferences.getBoolean("update", false);
@@ -29,6 +28,15 @@ public class SettingActivity extends AppCompatActivity {
         blackNumberIntent =new Intent(this, CallSmsSafeService.class);
         //boolean blackNumberService= ServiceStatesUtils.isRunningService(this,"com.example.dell.mobilesafe.service.CallSmsSafeService");//检测是否在运行
         //interruptListItemView.setChecked(blackNumberService);
+        setListener();
+    }
+
+    private void initView() {
+        autoUpdateItemView = (SettingItemView) findViewById(R.id.siv_update);
+        interruptListItemView= (SettingItemView) findViewById(R.id.siv_interrupt);
+    }
+
+    private void setListener() {
         interruptListItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

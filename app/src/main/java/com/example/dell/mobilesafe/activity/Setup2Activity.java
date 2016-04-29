@@ -29,6 +29,10 @@ public class Setup2Activity extends BaseSetupActivity {
         } else {
             bindSimSiv.setChecked(true);
         }
+        setListener();
+    }
+
+    private void setListener() {
         bindSimSiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

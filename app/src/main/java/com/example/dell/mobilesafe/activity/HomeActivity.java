@@ -34,8 +34,8 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     private SharedPreferences sharedPreferences;
     private AlertDialog dialog;
-    private List<HomeItem> homeItemList=new ArrayList<HomeItem>();
-
+    private GridView gridView;
+    private List<HomeItem> homeItemList = new ArrayList<HomeItem>();
 
 
     @Override
@@ -43,10 +43,19 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initIco();
-        GridView gridView = (GridView) findViewById(R.id.grid_home);
+        initView();
         sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);//config表示保存的文件名字，以xml保存在data文件下
         HomeGridAdapter adapter = new HomeGridAdapter();
         gridView.setAdapter(adapter);
+        setListener();
+    }
+
+    private void initView() {
+
+        gridView = (GridView) findViewById(R.id.grid_home);
+    }
+
+    private void setListener() {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -58,22 +67,23 @@ public class HomeActivity extends AppCompatActivity {
                         showLostFindDialog();
                         break;
                     case 1:
-                        intent=new Intent(HomeActivity.this,CallSmsSafeActivity.class);
+                        intent = new Intent(HomeActivity.this, CallSmsSafeActivity.class);
                         startActivity(intent);
                         break;
                     case 2:
-                        intent=new Intent(HomeActivity.this,APPManagerActivity.class);
+                        intent = new Intent(HomeActivity.this, APPManagerActivity.class);
                         startActivity(intent);
                         break;
                     case 3:
-                        intent=new Intent(HomeActivity.this,TaskManagerActivity.class);
+                        intent = new Intent(HomeActivity.this, TaskManagerActivity.class);
                         startActivity(intent);
                         break;
                     case 7:
-                        intent=new Intent(HomeActivity.this,ToolsActivity.class);
+                        intent = new Intent(HomeActivity.this, ToolsActivity.class);
                         startActivity(intent);
                         break;
-                    case 8:intent = new Intent(HomeActivity.this, SettingActivity.class);
+                    case 8:
+                        intent = new Intent(HomeActivity.this, SettingActivity.class);
                         startActivity(intent);
                         break;
                     default:
@@ -85,15 +95,15 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void initIco() {
-        HomeItem homeItem0=new HomeItem("手机防盗",R.drawable.ico_shoujifangdao);
-        HomeItem homeItem1=new HomeItem("通讯卫士",R.drawable.ico_tongxunweishi);
-        HomeItem homeItem2=new HomeItem("应用管理",R.drawable.ico_yingyongguanli);
-        HomeItem homeItem3=new HomeItem("进程管理",R.drawable.ico_jinchengguanli);
-        HomeItem homeItem4=new HomeItem("流量管理",R.drawable.ico_liuliangtongji);
-        HomeItem homeItem5=new HomeItem("手机杀毒",R.drawable.ico_shoujishadu);
-        HomeItem homeItem6=new HomeItem("缓存清理",R.drawable.ico_huancunqingli);
-        HomeItem homeItem7=new HomeItem("高级工具",R.drawable.ico_gaojigongju);
-        HomeItem homeItem8=new HomeItem("设置中心",R.drawable.ico_shezhizhongxin);
+        HomeItem homeItem0 = new HomeItem("手机防盗", R.drawable.ico_shoujifangdao);
+        HomeItem homeItem1 = new HomeItem("通讯卫士", R.drawable.ico_tongxunweishi);
+        HomeItem homeItem2 = new HomeItem("应用管理", R.drawable.ico_yingyongguanli);
+        HomeItem homeItem3 = new HomeItem("进程管理", R.drawable.ico_jinchengguanli);
+        HomeItem homeItem4 = new HomeItem("流量管理", R.drawable.ico_liuliangtongji);
+        HomeItem homeItem5 = new HomeItem("手机杀毒", R.drawable.ico_shoujishadu);
+        HomeItem homeItem6 = new HomeItem("缓存清理", R.drawable.ico_huancunqingli);
+        HomeItem homeItem7 = new HomeItem("高级工具", R.drawable.ico_gaojigongju);
+        HomeItem homeItem8 = new HomeItem("设置中心", R.drawable.ico_shezhizhongxin);
         homeItemList.add(homeItem0);
         homeItemList.add(homeItem1);
         homeItemList.add(homeItem2);
@@ -207,7 +217,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    private class HomeGridAdapter extends BaseAdapter{
+    private class HomeGridAdapter extends BaseAdapter {
 
 
         @Override
@@ -229,22 +239,23 @@ public class HomeActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder viewHolder;
             View view;
-            if (convertView==null){
-                view=View.inflate(HomeActivity.this,R.layout.item_home,null);
-                viewHolder=new ViewHolder();
-                viewHolder.nameTxt= (TextView) view.findViewById(R.id.txt_name);
-                viewHolder.icoImg= (ImageView) view.findViewById(R.id.img_ico);
+            if (convertView == null) {
+                view = View.inflate(HomeActivity.this, R.layout.item_home, null);
+                viewHolder = new ViewHolder();
+                viewHolder.nameTxt = (TextView) view.findViewById(R.id.txt_name);
+                viewHolder.icoImg = (ImageView) view.findViewById(R.id.img_ico);
                 view.setTag(viewHolder);
-            }else {
-                view=convertView;
-                viewHolder= (ViewHolder) view.getTag();
+            } else {
+                view = convertView;
+                viewHolder = (ViewHolder) view.getTag();
             }
             viewHolder.nameTxt.setText(homeItemList.get(position).getName());
             viewHolder.icoImg.setImageResource(homeItemList.get(position).getId());
             return view;
         }
     }
-    static class ViewHolder{
+
+    static class ViewHolder {
         TextView nameTxt;
         ImageView icoImg;
     }

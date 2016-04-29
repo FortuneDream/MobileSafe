@@ -17,7 +17,16 @@ public class Setup1Activity extends BaseSetupActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup1);
+        initView();
+        setListener();
+    }
+
+    private void initView() {
         authorityBtn= (Button) findViewById(R.id.btn_authority);
+        manageBtn= (Button) findViewById(R.id.btn_manage);
+    }
+
+    private void setListener(){
         authorityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,7 +34,7 @@ public class Setup1Activity extends BaseSetupActivity {
                 startActivity(intent);
             }
         });
-        manageBtn= (Button) findViewById(R.id.btn_manage);
+
         manageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +44,6 @@ public class Setup1Activity extends BaseSetupActivity {
             }
         });
         //实例化手势识别器
-
     }
 
     public void showNext() {

@@ -2,6 +2,7 @@ package com.example.dell.mobilesafe.activity;
 
 import android.app.ActivityManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,7 @@ public class TaskManagerActivity extends AppCompatActivity {
     private ListView listView;
     private LinearLayout llLoading;
     private ActivityManager am;
+    private SharedPreferences sharedPreferences;
     private int runningProcessCount;
     private long availRam;
     private long totalRam;
@@ -63,6 +65,11 @@ public class TaskManagerActivity extends AppCompatActivity {
         totalRam = SystemInfoUtils.getTotalRam(this);
         runProcessTxt.setText("运行中的进程数量:(" + runningProcessCount + ")");
         availRamTxt.setText("剩余/总内存:" + Formatter.formatFileSize(this, availRam) + "/" + Formatter.formatFileSize(this, totalRam));
+        setListener();
+        getAllTaskData();
+    }
+
+    private void setListener() {
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -96,7 +103,6 @@ public class TaskManagerActivity extends AppCompatActivity {
                 }
             }
         });
-        getAllTaskData();
     }
 
     private void getAllTaskData() {
@@ -132,7 +138,13 @@ public class TaskManagerActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return userInfoList.size() + systemInfoList.size() + 2;
+            sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
+            boolean isHideSystem = sharedPreferences.getBoolean("hide_system", false);
+            if (isHideSystem) {
+                return userInfoList.size() + 1;
+            } else {
+                return userInfoList.size() + systemInfoList.size() + 2;
+            }
         }
 
         //在这里动态设置数据源
@@ -234,11 +246,17 @@ public class TaskManagerActivity extends AppCompatActivity {
             }
         }
         getAllTaskData();
-        Toast.makeText(TaskManagerActivity.this,"已经清理完毕",Toast.LENGTH_SHORT).show();
+        Toast.makeText(TaskManagerActivity.this, "已经清理完毕", Toast.LENGTH_SHORT).show();
     }
 
-    public void reEnterSetting(View view){
-        Intent intent=new Intent(TaskManagerActivity.this,TaskManagerSettingActivity.class);
-        startActivity(intent);
+    public void reEnterSetting(View view) {
+        Intent intent = new Intent(TaskManagerActivity.this, TaskManagerSettingActivity.class);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {//设置返回刷新数据
+        super.onActivityResult(requestCode, resultCode, data);
+        adapter.notifyDataSetChanged();//getCount->getView()
     }
 }

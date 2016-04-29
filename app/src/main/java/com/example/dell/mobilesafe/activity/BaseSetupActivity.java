@@ -18,6 +18,10 @@ public abstract class BaseSetupActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences=getSharedPreferences("config",MODE_PRIVATE);
+        setListener();
+    }
+
+    private void setListener() {
         detector=new GestureDetector(this,new GestureDetector.SimpleOnGestureListener(){
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {

@@ -20,10 +20,13 @@ public class Setup3Activity extends BaseSetupActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup3);
         String number = sharedPreferences.getString("number", "");//sp取出数据一般在onCreate方法中执行
-        selectedPeopleBtn = (Button) findViewById(R.id.btn_selected_contacts);
-        numberEdt = (EditText) findViewById(R.id.edt_number);
+        initView();
         assert numberEdt != null;
         numberEdt.setText(number);
+        setListener();
+    }
+
+    private void setListener() {
         selectedPeopleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,6 +35,11 @@ public class Setup3Activity extends BaseSetupActivity {
                 startActivityForResult(intent, 0);//需要新Activity返回数据的时候使用
             }
         });
+    }
+
+    private void initView() {
+        selectedPeopleBtn = (Button) findViewById(R.id.btn_selected_contacts);
+        numberEdt = (EditText) findViewById(R.id.edt_number);
     }
 
     @Override

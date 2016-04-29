@@ -10,10 +10,18 @@
         android:text="进程设置" />
 
     <com.example.dell.mobilesafe.view.SettingItemView
+        android:id="@+id/siv_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         yq:titles="系统进程"
         yq:update_off="显示"
-        yq:update_on="隐藏"
-        android:id="@+id/siv_update"
+        yq:update_on="隐藏" />
+
+    <com.example.dell.mobilesafe.view.SettingItemView
+        yq:titles="锁屏清理进程"
+        yq:update_off="已关闭"
+        yq:update_on="已开启"
+        android:id="@+id/siv_kill_process"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

@@ -37,8 +37,7 @@ public class SelectContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_contact);
-        listView = (ListView) findViewById(R.id.list_contact);
-        loadingLL= (LinearLayout) findViewById(R.id.ll_loading);
+        initView();
         new Thread(){
             @Override
             public void run() {
@@ -46,9 +45,11 @@ public class SelectContactActivity extends AppCompatActivity {
                 mHandler.sendEmptyMessage(0);
             }
         }.start();
-
         //String里存的是键，int存的对应的控件id
+        setListener();
+    }
 
+    private void setListener() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -62,7 +63,13 @@ public class SelectContactActivity extends AppCompatActivity {
             }
         });
     }
-//在子线程完成，因联系人列表数量大
+
+    private void initView() {
+        listView = (ListView) findViewById(R.id.list_contact);
+        loadingLL= (LinearLayout) findViewById(R.id.ll_loading);
+    }
+
+    //在子线程完成，因联系人列表数量大
     private List<Map<String, String>> getAllContacts() {
         ContentResolver contentResolver=getContentResolver();//内容解析者
         Cursor cursor=contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null, null);

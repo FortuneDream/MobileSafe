@@ -79,8 +79,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         mSharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
-        splashVersionTxt = (TextView) findViewById(R.id.txt_splash_version);
-        updateApkPrb = (ProgressBar) findViewById(R.id.prb_update_apk);
+        initView();
         assert splashVersionTxt != null;
         //设置版本名称
         splashVersionTxt.setText("版本名" + getVersionName());
@@ -99,6 +98,11 @@ public class SplashActivity extends AppCompatActivity {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f, 1.0f);
         alphaAnimation.setDuration(1000);
         findViewById(R.id.rl_splash_root).startAnimation(alphaAnimation);
+    }
+
+    private void initView() {
+        splashVersionTxt = (TextView) findViewById(R.id.txt_splash_version);
+        updateApkPrb = (ProgressBar) findViewById(R.id.prb_update_apk);
     }
 
     private void showUpdateDialog() {

@@ -16,13 +16,21 @@ public class Setup4Activity extends BaseSetupActivity {
         Boolean protecting=sharedPreferences.getBoolean("protecting", false);
         final SharedPreferences.Editor editor =sharedPreferences.edit();
         setContentView(R.layout.activity_setup4);
-        protectedCb= (CheckBox) findViewById(R.id.cb_protected);
+        initView();
         if (protecting){
             protectedCb.setText("当前状态：手机防盗已经开启");
         }else{
             protectedCb.setText("当前状态：手机防盗没有开启");
         }
         protectedCb.setChecked(protecting);
+        setListener(editor);
+    }
+
+    private void initView() {
+        protectedCb= (CheckBox) findViewById(R.id.cb_protected);
+    }
+
+    private void setListener(final SharedPreferences.Editor editor) {
         protectedCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
