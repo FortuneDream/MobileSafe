@@ -5,33 +5,65 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.dell.mobilesafe.activity.ToolsActivity">
+
     <TextView
-        android:text="高级工具"
-       style="@style/title_one"/>
+        style="@style/title_one"
+        android:text="高级工具" />
+
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@android:drawable/ic_menu_camera"
+        android:gravity="center_vertical"
         android:onClick="numberAddressQuery"
-        android:gravity="center_vertical"
-        android:drawableStart="@android:drawable/ic_menu_camera"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="归属地查询"
-        android:textSize="@dimen/text"
-        android:textColor="@color/text"/>
-    <View
-       style="@style/divider"/>
+        android:textColor="@color/text"
+        android:textSize="@dimen/text" />
+
+    <View style="@style/divider" />
+
     <TextView
-        android:onClick="smsBackUp"
-        android:gravity="center_vertical"
-        android:drawableStart="@android:drawable/ic_menu_camera"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@android:drawable/ic_menu_camera"
+        android:gravity="center_vertical"
+        android:onClick="smsBackUp"
         android:text="短信备份"
-        android:textSize="@dimen/text"
-        android:textColor="@color/text"/>
-    <View
-        style="@style/divider"/>
+        android:textColor="@color/text"
+        android:textSize="@dimen/text" />
+
+    <View style="@style/divider" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@android:drawable/ic_menu_camera"
+        android:gravity="center_vertical"
+        android:onClick="commonNumberQuery"
+        android:text="常用号码查询"
+        android:textColor="@color/text"
+        android:textSize="@dimen/text" />
+
+    <View style="@style/divider" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@android:drawable/ic_menu_camera"
+        android:gravity="center_vertical"
+        android:onClick="appLock"
+        android:text="程序锁"
+        android:textColor="@color/text"
+        android:textSize="@dimen/text" />
+
+    <View style="@style/divider" />
+
 </LinearLayout>

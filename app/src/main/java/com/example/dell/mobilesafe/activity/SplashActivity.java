@@ -100,6 +100,8 @@ public class SplashActivity extends AppCompatActivity {
         findViewById(R.id.rl_splash_root).startAnimation(alphaAnimation);
     }
 
+
+
     private void initView() {
         splashVersionTxt = (TextView) findViewById(R.id.txt_splash_version);
         updateApkPrb = (ProgressBar) findViewById(R.id.prb_update_apk);

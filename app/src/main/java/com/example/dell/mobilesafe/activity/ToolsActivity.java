@@ -24,56 +24,67 @@ public class ToolsActivity extends AppCompatActivity {
     }
 
     //进入号码归属地查询的页面
-    public void numberAddressQuery(View view){
-        Intent intent=new Intent(this, NumberAddressQueryActivity.class);
+    public void numberAddressQuery(View view) {
+        Intent intent = new Intent(this, NumberAddressQueryActivity.class);
         startActivity(intent);
 
     }
 
     //短信备份
-    public void smsBackUp(View view){
+    public void smsBackUp(View view) {
         //SD卡安装可用
-            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-                final File file=new File(Environment.getExternalStorageDirectory(),"smsBackUp.xml");
-                final ProgressDialog dialog=new ProgressDialog(ToolsActivity.this);//弹出一个进度框
-                dialog.setMessage("正在备份短信...");
-                dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);//设置为水平进度框
-                dialog.show();
-                new Thread(){
-                    @Override
-                    public void run() {
-                        try {
-                            SmsBackUpUtils.smsBackUp(ToolsActivity.this, file.getAbsolutePath(), new SmsBackUpUtils.SmsBackUpCallBack() {
-                                @Override
-                                public void smsBackUpBefore(int total) {
-                                    dialog.setMax(total);
-                                }
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            final File file = new File(Environment.getExternalStorageDirectory(), "smsBackUp.xml");
+            final ProgressDialog dialog = new ProgressDialog(ToolsActivity.this);//弹出一个进度框
+            dialog.setMessage("正在备份短信...");
+            dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);//设置为水平进度框
+            dialog.show();
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        SmsBackUpUtils.smsBackUp(ToolsActivity.this, file.getAbsolutePath(), new SmsBackUpUtils.SmsBackUpCallBack() {
+                            @Override
+                            public void smsBackUpBefore(int total) {
+                                dialog.setMax(total);
+                            }
 
 
-                                @Override
-                                public void smsBackUpProgress(int progress) {
-                                        dialog.setProgress(progress);
+                            @Override
+                            public void smsBackUpProgress(int progress) {
+                                dialog.setProgress(progress);
 
-                                }
-                                @Override
-                                public void smsBackUpFinish() {
-                                            runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    Toast.makeText(ToolsActivity.this,"短信备份完毕",Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
-                                }
-                            });
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }finally {
-                            dialog.dismiss();//可以在子线直接dismiss()
-                        }
+                            }
+
+                            @Override
+                            public void smsBackUpFinish() {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(ToolsActivity.this, "短信备份完毕", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        dialog.dismiss();//可以在子线直接dismiss()
                     }
-                }.start();
-            }else {
-                Toast.makeText(this,"sd卡不可用",Toast.LENGTH_SHORT).show();
-            }
+                }
+            }.start();
+        } else {
+            Toast.makeText(this, "sd卡不可用", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void commonNumberQuery(View view) {
+        Intent intent = new Intent(ToolsActivity.this, CommonNumberQuery.class);
+        startActivity(intent);
+    }
+
+    public void appLock(View view) {
+        Intent intent = new Intent(ToolsActivity.this, APPLockActivity.class);
+        startActivity(intent);
     }
 }

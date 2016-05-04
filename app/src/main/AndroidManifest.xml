@@ -104,7 +104,25 @@
 
         <activity android:name=".activity.APPManagerActivity" />
         <activity android:name=".activity.TaskManagerActivity" />
-        <activity android:name=".activity.TaskManagerSettingActivity"></activity>
+        <activity android:name=".activity.TaskManagerSettingActivity" />
+
+        <service
+            android:name=".service.KillProcessService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name=".receiver.MyAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/my_app_widget_info" />
+        </receiver>
+
+        <activity android:name=".activity.CommonNumberQuery" />
+        <activity android:name=".activity.APPLockActivity"></activity>
     </application>
 
 </manifest>

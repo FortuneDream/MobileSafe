@@ -1,18 +1,19 @@
 package com.example.dell.mobilesafe.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.dell.mobilesafe.R;
-import com.example.dell.mobilesafe.utils.LogUtil;
+import com.example.dell.mobilesafe.service.KillProcessService;
 import com.example.dell.mobilesafe.view.SettingItemView;
 
 public class TaskManagerSettingActivity extends AppCompatActivity {
     private SettingItemView updateSiv;
     private SettingItemView killProcessSiv;
+    private Intent killProcessIntent;
     private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,12 @@ public class TaskManagerSettingActivity extends AppCompatActivity {
         initView();
         Boolean isHideSystem=sharedPreferences.getBoolean("hide_system",false);//勾选类控件，一定要用sp来保存状态
         updateSiv.setChecked(isHideSystem);
+        Boolean isAutoKillProcess=sharedPreferences.getBoolean("auto_kill_process",false);
+        killProcessSiv.setChecked(isAutoKillProcess);
         setListener();
+        //添加ServiceStatusUtils.isRunningService判断进程是否运行,后修改siv的状态，因为可能被系统杀死
+
+
     }
 
     private void setListener() {
@@ -35,9 +41,9 @@ public class TaskManagerSettingActivity extends AppCompatActivity {
                 }else {
                     updateSiv.setChecked(true);
                 }
-                SharedPreferences.Editor edit=sharedPreferences.edit();
-                edit.putBoolean("hide_system",updateSiv.isChecked());
-                edit.apply();
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putBoolean("hide_system",updateSiv.isChecked());
+                editor.apply();
             }
         });
 
@@ -46,9 +52,16 @@ public class TaskManagerSettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (killProcessSiv.isChecked()){
                     killProcessSiv.setChecked(false);
+                    killProcessIntent=new Intent(TaskManagerSettingActivity.this,KillProcessService.class);
+                    stopService(killProcessIntent=new Intent(TaskManagerSettingActivity.this,KillProcessService.class));//取消服务
                 }else {
                     killProcessSiv.setChecked(true);
+                    killProcessIntent=new Intent(TaskManagerSettingActivity.this,KillProcessService.class);
+                    startService(killProcessIntent);
                 }
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putBoolean("auto_kill_process",killProcessSiv.isChecked());
+                editor.apply();
             }
         });
     }
