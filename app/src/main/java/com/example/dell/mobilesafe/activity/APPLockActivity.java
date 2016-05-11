@@ -41,7 +41,6 @@ public class APPLockActivity extends AppCompatActivity implements View.OnClickLi
     private ListAdapter lockAdapter;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

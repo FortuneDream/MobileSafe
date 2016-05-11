@@ -18,6 +18,11 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
 
     <application
         android:allowBackup="true"
@@ -122,7 +127,19 @@
         </receiver>
 
         <activity android:name=".activity.CommonNumberQuery" />
-        <activity android:name=".activity.APPLockActivity"></activity>
+        <activity android:name=".activity.APPLockActivity" />
+
+        <service
+            android:name=".service.WatchDogService"
+            android:enabled="true"
+            android:exported="true" />
+
+
+        <activity android:name=".activity.EnterAppActivity"
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true"/>
+        <!--不显示在最近打开的列表中-->
+        <!--弹窗Activity,或者跳到其他应用要用singleInstance-->
     </application>
 
 </manifest>

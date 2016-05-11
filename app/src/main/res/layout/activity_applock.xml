@@ -36,7 +36,7 @@
             android:textColor="@color/text"
             android:textSize="@dimen/text" />
     </LinearLayout>
-
+        <!--同一个Activity两个ListView-->
         <LinearLayout
             android:id="@+id/ll_unlock"
             android:layout_width="match_parent"

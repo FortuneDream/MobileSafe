@@ -23,4 +23,11 @@
         yq:update_on="黑名单拦截已经开启"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <com.example.dell.mobilesafe.view.SettingItemView
+        yq:titles="设置程序锁"
+        yq:update_off="程序锁已经关闭"
+        yq:update_on="程序锁已经开启"
+        android:id="@+id/siv_lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

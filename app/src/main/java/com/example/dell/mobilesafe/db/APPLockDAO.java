@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 //对于数据库的增删改查
 //需要优化（如重复删除，重复加入）
 public class APPLockDAO {
+    private Context context;
     private SQLiteDatabase db;
     private APPLockDBHelper dbOpenHelper;
     private static APPLockDAO appLockDAO;
@@ -21,6 +23,7 @@ public class APPLockDAO {
     private APPLockDAO(Context context) {
         dbOpenHelper = new APPLockDBHelper(context);
         db = dbOpenHelper.getWritableDatabase();
+        this.context=context;
     }
 
     public synchronized static APPLockDAO getDBInstance(Context context) {
@@ -35,10 +38,16 @@ public class APPLockDAO {
         ContentValues values = new ContentValues();
         values.put("packageName", packageName);
         db.insert("appLock", null, values);
+        //当数据变化发送消息
+        Uri uri=Uri.parse("content://com.example.dell.dbchange");
+        context.getContentResolver().notifyChange(uri,null);
     }
 
     public void delete(String packageName) {
         db.delete("appLock", "packageName=?", new String[]{packageName});
+        //当数据变化发送消息
+        Uri uri=Uri.parse("content://com.example.dell.dbchange");
+        context.getContentResolver().notifyChange(uri,null);
     }
 
 
