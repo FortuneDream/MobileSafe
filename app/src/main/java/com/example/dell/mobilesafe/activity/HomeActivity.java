@@ -78,6 +78,14 @@ public class HomeActivity extends AppCompatActivity {
                         intent = new Intent(HomeActivity.this, TaskManagerActivity.class);
                         startActivity(intent);
                         break;
+                    case 4:
+                        intent = new Intent(HomeActivity.this, TrafficManagerActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 5:
+                        intent=new Intent(HomeActivity.this,AntiVirusActivity.class);
+                        startActivity(intent);
+                        break;
                     case 7:
                         intent = new Intent(HomeActivity.this, ToolsActivity.class);
                         startActivity(intent);

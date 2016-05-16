@@ -95,6 +95,7 @@ public class WatchDogService extends Service {
 
         }
     }
+    //内容观察者
     private  class MyContentObserver extends ContentObserver{
 
         /**

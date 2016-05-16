@@ -26,7 +26,7 @@ public class AppInfoProvider {
         List<PackageInfo> packageInfos=pm.getInstalledPackages(0);//得到已经安装的包;
         for (PackageInfo pi:packageInfos){
             AppInfo appInfo=new AppInfo();
-            appInfo.setName(pi.applicationInfo.loadLabel(pm).toString());
+            appInfo.setName(pi.applicationInfo.loadLabel(pm).toString()+pi.applicationInfo.uid);
             appInfo.setIco(pi.applicationInfo.loadIcon(pm));
             appInfo.setPackName(pi.packageName);
             int flag=pi.applicationInfo.flags;//应用程序的表示，答题卡模型

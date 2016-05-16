@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -210,5 +211,6 @@ public class APPLockActivity extends AppCompatActivity implements View.OnClickLi
         TextView nameTxt;
         ImageView statusImg;
     }
+
 
 }

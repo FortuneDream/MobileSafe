@@ -134,12 +134,18 @@
             android:enabled="true"
             android:exported="true" />
 
-
-        <activity android:name=".activity.EnterAppActivity"
-            android:launchMode="singleInstance"
-            android:excludeFromRecents="true"/>
-        <!--不显示在最近打开的列表中-->
-        <!--弹窗Activity,或者跳到其他应用要用singleInstance-->
+        <activity
+            android:name=".activity.EnterAppActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance" />
+        <!-- 不显示在最近打开的列表中 -->
+        <!-- 弹窗Activity,或者跳到其他应用要用singleInstance -->
+        <activity android:name=".activity.TrafficManagerActivity" />
+        <activity
+            android:name=".activity.AntiVirusActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation" />
+        <!-- 横屏之后，不会再次执行onCreate方法 -->
+        <activity android:name=".activity.CleanCacheActivity"></activity>
     </application>
 
 </manifest>
