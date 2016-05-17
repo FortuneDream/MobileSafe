@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.bean.AppInfo;
 import com.example.dell.mobilesafe.engine.AppInfoProvider;
+import com.example.dell.mobilesafe.utils.DensityUtil;
 import com.example.dell.mobilesafe.utils.LogUtil;
 
 import java.util.ArrayList;
@@ -122,8 +123,13 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
                     popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     int[] location = new int[2];
                     view.getLocationInWindow(location);//得到listView中某条的坐标,按照x，y的顺序存入location数组中
-                    popupWindow.showAtLocation(parent, Gravity.START + Gravity.TOP, location[0] + 100, location[1]);
+
+                    //所以把60当做dip，根据不同屏幕，转换成不同的像素
+                    int px=DensityUtil.dipToPx(APPManagerActivity.this,60);
+
+                    popupWindow.showAtLocation(parent, Gravity.START + Gravity.TOP, location[0] + px, location[1]);
                     //在代码写的长度单位都是像素，而不是dp
+
 
                     AlphaAnimation alphaAnimation = new AlphaAnimation(0.2f, 1.0f);//渐变动画
                     alphaAnimation.setDuration(500);//设置时常
