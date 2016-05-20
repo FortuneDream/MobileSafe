@@ -27,7 +27,7 @@
             android:layout_alignParentEnd="true"
             android:text="sd卡可用" />
     </RelativeLayout>
-    <!--当需要加载的时候，用真布局包裹list+progressdialog-->
+    <!--当需要加载的时候，用真布局包裹list+ProgressDialog-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

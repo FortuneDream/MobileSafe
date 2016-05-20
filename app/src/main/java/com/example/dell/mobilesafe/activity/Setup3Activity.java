@@ -27,10 +27,10 @@ public class Setup3Activity extends BaseSetupActivity {
     }
 
     private void setListener() {
+        //进入联系人列表
         selectedPeopleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //进入联系人列表
+            public void onClick(View v){
                 Intent intent = new Intent(Setup3Activity.this, SelectContactActivity.class);
                 startActivityForResult(intent, 0);//需要新Activity返回数据的时候使用
             }

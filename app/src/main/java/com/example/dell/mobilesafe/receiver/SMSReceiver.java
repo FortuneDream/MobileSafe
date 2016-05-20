@@ -29,7 +29,7 @@ public class SMSReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         sharedPreferences = context.getSharedPreferences("config", Context.MODE_PRIVATE);
         devicePolicyManager = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-//        String format = intent.getStringExtra("format");
+        String format = intent.getStringExtra("format");
         Object[] pdus = (Object[]) intent.getExtras().get("pdus");//pdus是一条短信的所有短信，因为短信会因为太长而被拆分
         SmsMessage[] messages = new SmsMessage[pdus.length];
         StringBuilder stringBuilder = new StringBuilder();
@@ -67,7 +67,6 @@ public class SMSReceiver extends BroadcastReceiver {
                 } else {
                     openAdmin(context);
                 }
-
                 abortBroadcast();
             } else if ("#LockScreen#".equals(body)) {
                 ComponentName mDeviceAdminSample = new ComponentName(context, DeviceReceiver.class);//把组件包起来。激活广播;

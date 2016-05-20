@@ -1,6 +1,7 @@
 package com.example.dell.mobilesafe.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -48,6 +49,7 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
     private TextView popDeleteTxt;
     private TextView popShareTxt;
     private LinearLayout llLoading;
+    private SharedPreferences sp;
     private PopupWindow popupWindow;
     private List<AppInfo> appInfoList;
     private List<AppInfo> systemAppInfoList = new ArrayList<AppInfo>();
@@ -68,8 +70,15 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_appmanager);
         initView();
         setListener();
-        romTxt.setText("内存可用：" + getAvailSpace(Environment.getDataDirectory().getAbsolutePath()));//绝对路径
-        sdCardTxt.setText("sd卡可用：" + getAvailSpace(Environment.getExternalStorageDirectory().getAbsolutePath()));
+        romTxt.setText("内部存储(data)可用：" + getAvailSpace(Environment.getDataDirectory().getAbsolutePath()));
+        sp=getSharedPreferences("config",MODE_PRIVATE);
+        String sdCardPath=sp.getString("sdcard",null);
+        if (sdCardPath==null){
+            sdCardTxt.setText("无外部存储设备");
+        }else {
+            sdCardTxt.setText("外部存储可用："+getAvailSpace(sdCardPath));
+        }
+        sdCardTxt.setText("外部存储可用："+getAvailSpace(Environment.getExternalStorageDirectory().getAbsolutePath()));
         loadingData();
     }
 
@@ -100,11 +109,12 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
                     stateTxt.setText("用户程序(" + userAppInfoList.size() + ")");
                 }
             }
-        });
+        });//浮动bar
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object obj = listView.getItemAtPosition(position);//通过position得到item，要重写getItem的方法
+                //这里的parent其实是ListView
+                Object obj = parent.getItemAtPosition(position);//通过position得到item，要重写getItem的方法
                 if (obj != null) {
                     dismissPopupWindow();
                     View contentView = View.inflate(APPManagerActivity.this, R.layout.item_popup_window, null);
@@ -117,17 +127,13 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
                     popShareTxt.setOnClickListener(APPManagerActivity.this);
                     LogUtil.d(TAG, "appInfo==" + appInfo.getPackName());
                     popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    //用ViewGroup的LayoutParams
-
                     //popupWindow播放动画，必须要加上背景，必须在showAtLocation之前
                     popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     int[] location = new int[2];
                     view.getLocationInWindow(location);//得到listView中某条的坐标,按照x，y的顺序存入location数组中
-
                     //所以把60当做dip，根据不同屏幕，转换成不同的像素
-                    int px=DensityUtil.dipToPx(APPManagerActivity.this,60);
-
-                    popupWindow.showAtLocation(parent, Gravity.START + Gravity.TOP, location[0] + px, location[1]);
+                    int px = DensityUtil.dipToPx(APPManagerActivity.this, 60);
+                    popupWindow.showAtLocation(view, Gravity.START + Gravity.TOP, location[0] + px, location[1]);
                     //在代码写的长度单位都是像素，而不是dp
 
 
@@ -296,7 +302,7 @@ public class APPManagerActivity extends AppCompatActivity implements View.OnClic
                 view.setTag(viewHolder);
             }
 
-            appInfo= (AppInfo) getItem(position);
+            appInfo = (AppInfo) getItem(position);
             viewHolder.nameTxt.setText(appInfo.getName());
             viewHolder.icoImg.setImageDrawable(appInfo.getIco());
             if (appInfo.isRom()) {

@@ -14,7 +14,6 @@ public class BootCompleteReceiver extends BroadcastReceiver {
 
     public BootCompleteReceiver() {
     }
-
     @Override
     public void onReceive(Context context, Intent intent) {
         //记得去Manifest注册具体监听哪个action，并申明权限

@@ -44,7 +44,6 @@ public class AntiVirusActivity extends AppCompatActivity {
                 }
             }
         }.start();
-
     }
 
     private void initView() {

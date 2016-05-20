@@ -24,7 +24,6 @@ public class APPLockDBHelper extends SQLiteOpenHelper {
                 +")");
 
     }
-
     //数据库升级
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

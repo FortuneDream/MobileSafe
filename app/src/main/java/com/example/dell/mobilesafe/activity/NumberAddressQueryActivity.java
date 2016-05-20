@@ -17,7 +17,6 @@ public class NumberAddressQueryActivity extends AppCompatActivity {
     private static final String TAG = "NumberAddressQueryActivity";
     private EditText numberEdt;
     private TextView resultTxt;
-
     //    private Vibrator vibrator;//振动器
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,6 @@ public class NumberAddressQueryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_number_address_query);
         initView();
     }
-
     private void initView() {
 //        vibrator= (Vibrator) getSystemService(VIBRATOR_SERVICE);//震动服务
         numberEdt = (EditText) findViewById(R.id.edt_number);

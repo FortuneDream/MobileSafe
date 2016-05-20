@@ -29,6 +29,8 @@ import java.util.List;
 
 /**
  * Created by Q on 2016/3/29.
+ * GridView的使用
+ * 第一个Ico，先确认是否已经设置密码，已设置则弹出EnterDialog，正确则进入。未设置则弹出SetupDialog，设置之后即进入
  */
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
@@ -44,14 +46,13 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         initIco();
         initView();
-        sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);//config表示保存的文件名字，以xml保存在data文件下
+        sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
         HomeGridAdapter adapter = new HomeGridAdapter();
         gridView.setAdapter(adapter);
         setListener();
     }
 
     private void initView() {
-
         gridView = (GridView) findViewById(R.id.grid_home);
     }
 
@@ -60,9 +61,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent;
-                //参数一 gridView，参数二具体的某个View，position位置，id
+                //参数一 gridView，参数二具体的某个View，position位置，布局id
                 switch (position) {
-
                     case 0:
                         showLostFindDialog();
                         break;
@@ -83,11 +83,11 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case 5:
-                        intent=new Intent(HomeActivity.this,AntiVirusActivity.class);
+                        intent = new Intent(HomeActivity.this, AntiVirusActivity.class);
                         startActivity(intent);
                         break;
                     case 6:
-                        intent=new Intent(HomeActivity.this,CleanCacheActivity.class);
+                        intent = new Intent(HomeActivity.this, CleanCacheActivity.class);
                         startActivity(intent);
                         break;
                     case 7:
@@ -130,7 +130,7 @@ public class HomeActivity extends AppCompatActivity {
 
     //判断是否设置了密码
     private boolean isSetupPwd() {
-        String password = sharedPreferences.getString("password", null);
+        String password = sharedPreferences.getString("password", "");
         return !TextUtils.isEmpty(password);//password=""，返回false，否则返回true
     }
 
@@ -189,7 +189,6 @@ public class HomeActivity extends AppCompatActivity {
              */
         });
     }
-
     private void showEnterDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = View.inflate(HomeActivity.this, R.layout.dialog_enterpwd, null);

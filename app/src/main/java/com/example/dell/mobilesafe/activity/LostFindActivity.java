@@ -39,7 +39,6 @@ public class LostFindActivity extends AppCompatActivity {
                     lockImg.setImageResource(R.drawable.ico_release_lock);
                 }
             }
-
         } else {
             Intent intent = new Intent(LostFindActivity.this, Setup1Activity.class);
             startActivity(intent);

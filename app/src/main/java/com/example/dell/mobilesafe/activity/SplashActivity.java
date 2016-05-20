@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.bean.UpdateInfo;
+import com.example.dell.mobilesafe.service.SDCardService;
 import com.example.dell.mobilesafe.utils.LogUtil;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Call;
@@ -36,6 +37,7 @@ import net.tsz.afinal.http.AjaxCallBack;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 启动页面
@@ -74,17 +76,22 @@ public class SplashActivity extends AppCompatActivity {
     };
 
 
+    /**
+     * 1.显示Splash界面
+     * 2.根据sp中update的值判断是否检查最新版本，（此update可再Setting界面修改）
+     * 3.否则进入主界面（AlphaAnimation渐变动画）
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        mSharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
         initView();
+        mSharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
         assert splashVersionTxt != null;
         //设置版本名称
         splashVersionTxt.setText("版本名" + getVersionName());
-
-        //得到check保存的信息，如果是，就提示版本更新，否，也延迟2秒进入主页
+        //根据Setting界面的设置update是否检测版本更新，否则延迟2秒进入主页，（是，也会最少延迟2秒）
+        onCreateSdCardService();
         if (mSharedPreferences.getBoolean("update", false)) {
             checkVersion();
         } else {
@@ -100,6 +107,22 @@ public class SplashActivity extends AppCompatActivity {
         findViewById(R.id.rl_splash_root).startAnimation(alphaAnimation);
     }
 
+    private void onCreateSdCardService() {
+        Intent intent=new Intent(this, SDCardService.class);
+        startService(intent);
+    }
+
+    //包管理器，得到功能清单文件
+    private String getVersionName() {
+        PackageManager pm = getPackageManager();
+        try {
+            PackageInfo packageInfo = pm.getPackageInfo(getPackageName(), 0);
+            return packageInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
 
 
     private void initView() {
@@ -108,6 +131,8 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void showUpdateDialog() {
+        //AlertDialog的构造器是protected，所以new它的内部类，再show就可以得到dialog
+        //或者AlertDialog alertDialogs=
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //设置退出dialog的方法，即当点击dialog外或者返回键时，调用的方法
         builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -164,11 +189,25 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         });
-        builder.show();//这行代码不能忘记!
+        builder.show();
+        /**
+         *
+         * Builder:
+         * public AlertDialog show() {
+            final AlertDialog dialog = create();
+            dialog.show();
+            return dialog;
+            }
+            public AlertDialog create() {
+            final AlertDialog dialog = new AlertDialog(P.mContext, 0, false);
+            ......
+         }外部类含有一个4个参数无访问权限的构造方法，其他都是protected
+         */
     }
 
+    //系统内部PackageInstaller
     private void installApk(File t) {
-        //系统内部PackageInstaller
+
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
         intent.setDataAndType(Uri.fromFile(t), "application/vnd.android.package-archive");
@@ -183,17 +222,19 @@ public class SplashActivity extends AppCompatActivity {
         finish();
     }
 
-    //校验新版本，若有则升级
+
+    /**校验新版本，若有则升级
+     * 升级流程：
+     * 手机客户端:请求服务器数据判断，是否有新版本，若无则进入主界面，若有则弹出对话框，让用户选择是否
+     *            升级，否则进入主页面，是则下载最新APK，替换，安装，启动
+     *服务器：最新版本信息：2.0，最新版本描述信息：手机卫士最新版本，下载地址http://.......
+     */
     private void checkVersion() {
-        /**升级流程：
-         * 手机客户端:请求服务器数据判断，是否有新版本，若无则进入主界面，若有则弹出对话框，让用户选择是否
-         *            升级，否则进入主页面，是则下载最新APK，替换，安装，启动
-         *服务器：最新版本信息：2.0，最新版本描述信息：手机卫士最新版本，下载地址http://.......
-         */
+
 
         startTime = System.currentTimeMillis();
 
-        //请求网络，得到最新版本信息，
+        //OKHttp,请求最新版本
         OkHttpClient okHttpClient = new OkHttpClient();
         final Request request = new Request.Builder().url(getString(R.string.serverurl)).build();
         Call call = okHttpClient.newCall(request);
@@ -233,15 +274,4 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-    private String getVersionName() {
-        //包管理器，得到功能清单文件
-        PackageManager pm = getPackageManager();
-        try {
-            PackageInfo packageInfo = pm.getPackageInfo(getPackageName(), 0);
-            return packageInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-            return "";
-        }
-    }
 }

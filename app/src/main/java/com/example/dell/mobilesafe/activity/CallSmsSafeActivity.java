@@ -25,6 +25,7 @@ import com.example.dell.mobilesafe.db.BlackNumberDAO;
 import com.example.dell.mobilesafe.utils.LogUtil;
 
 import java.util.List;
+import java.util.Random;
 
 
 public class CallSmsSafeActivity extends AppCompatActivity {
@@ -36,12 +37,12 @@ public class CallSmsSafeActivity extends AppCompatActivity {
     private int count = 0;
     private CallSmsSafeAdapter adapter;
     private List<BlackNumberInfo> infos;
-    private boolean isLoading = false;
+    private boolean isLoading = false;//防止重复加载，上一条网络请求还没有回来，新的一天条就开始
     private AlertDialog dialog;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            isLoading = false;
+            isLoading = false;//数据源加载完毕
             if (adapter == null) {
                 adapter = new CallSmsSafeAdapter();
                 listView.setAdapter(adapter);
@@ -59,12 +60,7 @@ public class CallSmsSafeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_call_sms_safe);
         initView();
         blackNumberDAO = BlackNumberDAO.getDBInstance(this);
-//        Random random=new Random();
-//        for (int i=0;i<10;i++){
-//            blackNumberDAO.add("00000"+i, String.valueOf(random.nextInt(3)));
-//        }
         count = blackNumberDAO.queryCount();
-        //加载大量数据，用子线程
         loadingPartList();
     }
 
@@ -74,14 +70,12 @@ public class CallSmsSafeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (infos == null) {
-                    infos = blackNumberDAO.queryPart(index);//部分加载，防止过得加载
+                    infos = blackNumberDAO.queryPart(index);//index=0，第一次加载前20条
                 } else {
-                    //addALL在原来的基础上，再添加数据
-                    infos.addAll(blackNumberDAO.queryPart(index));
+                    //滑动，addALL在原来的基础上，再添加数据
+                    infos.addAll(blackNumberDAO.queryPart(index));//第一次从表的第index（即0）条开始，加载20条，滑动到底部,index+=20,再从第index(20)条开始加载,再加载20条。在0-19条上添加20-39条
                 }
                 mHandler.sendEmptyMessage(0);//子线程加载完毕后，发消息，然后设置adapter,
-                //只是利用子线程优化，仅仅只能让用户早一点进入黑名单Activity，但是此时还不能得到黑名单的列表，需要等待子线程加载完毕了才可以看到黑名单列表
-                //可以使用显示一个加载样式，来提示用户正在加载，然后加载完毕后，样式消失
             }
         }.start();
     }
@@ -98,6 +92,7 @@ public class CallSmsSafeActivity extends AppCompatActivity {
                     //静止状态（滑到底部停止）
                     case SCROLL_STATE_IDLE:
                         if (isLoading) {
+                            //防止快速滑动导致的多次网路请求，在最后一行里面多次执行LoadingPartList();
                             Toast.makeText(getApplicationContext(), "正在加载", Toast.LENGTH_SHORT).show();
                             return;
                         }
@@ -111,7 +106,7 @@ public class CallSmsSafeActivity extends AppCompatActivity {
                         }
                         if (lastPosition == (totalSize - 1)) {
                             index += 20;//再加载20条
-                            isLoading = true;//只能在这个if条语句中,如果写在外面，那么当没有滑动到最后一条时，is=true，此时，再滑动就一直在前面的if条件下return
+                            isLoading = true;//只能在这个if条语句中,如果写在外面，那么当没有滑动到最后一条时，isLoading=true，此时，再滑动就一直在前面的if条件下return
                             loadingPartList();
                             Toast.makeText(getApplicationContext(), "加载更多数据", Toast.LENGTH_SHORT).show();
                         }
@@ -166,12 +161,9 @@ public class CallSmsSafeActivity extends AppCompatActivity {
                 viewHolder.modeTxt = (TextView) view.findViewById(R.id.txt_mode);//
                 //view对象和viewHolder进行关联，给view添加一个额外的数据->viewholder.viewholder中保存了2个控件的位置，。
                 view.setTag(viewHolder);
-
-                LogUtil.v(TAG, "重新创建view");
             } else {
                 view = convertView;
                 viewHolder = (ViewHolder) view.getTag();//直接view的tag中的viewholder，不用遍历view树
-                LogUtil.v(TAG, "使用历史缓存的view");
             }
 
             final BlackNumberInfo info = infos.get(position);
@@ -192,19 +184,20 @@ public class CallSmsSafeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //1.删除数据库数据
+                    //2.当前列表删除
+                    //3.刷新
                     blackNumberDAO.delete(info.getNumber());
                     infos.remove(info);
                     adapter.notifyDataSetChanged();
-                    //2.当前列表删除
-                    //3.刷新
+
                 }
             });
-            LogUtil.v(TAG, "mode:" + info.getMode() + "  " + info.getNumber());
+            LogUtil.v(TAG, "mode:" + info.getMode() + "  " + info.getNumber()+"position:"+position);
             return view;
         }
     }
 
-    static class ViewHolder {//用静态内部类，只加载一次类
+    static class ViewHolder {
         TextView numberTxt;
         TextView modeTxt;
         ImageView deleteImg;

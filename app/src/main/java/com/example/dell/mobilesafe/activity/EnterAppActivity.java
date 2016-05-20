@@ -36,7 +36,6 @@ public class EnterAppActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     private void initView() {

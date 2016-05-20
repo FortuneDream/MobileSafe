@@ -24,7 +24,9 @@ public class SmsBackUpUtils {
     public interface SmsBackUpCallBack {
         //短信备份前调用，total短信总条数
         void smsBackUpBefore(int total);
+
         void smsBackUpFinish();
+
         //备份过程中执行
         void smsBackUpProgress(int progress);
     }
@@ -68,7 +70,6 @@ public class SmsBackUpUtils {
             xmlSerializer.endTag(null, "body");
 
             xmlSerializer.endTag(null, "sms");
-
             progress++;
             callBack.smsBackUpProgress(progress);//回调的方法
         }

@@ -27,7 +27,6 @@ public class ToolsActivity extends AppCompatActivity {
     public void numberAddressQuery(View view) {
         Intent intent = new Intent(this, NumberAddressQueryActivity.class);
         startActivity(intent);
-
     }
 
     //短信备份
@@ -61,7 +60,7 @@ public class ToolsActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(ToolsActivity.this, "短信备份完毕", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ToolsActivity.this, "短信备份完毕", Toast.LENGTH_SHORT).show();//主线程
                                     }
                                 });
                             }

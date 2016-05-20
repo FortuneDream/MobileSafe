@@ -8,12 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Q on 2016/4/15.
  */
 public class BlackNumberDBOpenHelper extends SQLiteOpenHelper {
-
     //创建数据库，只传入一个context
     public BlackNumberDBOpenHelper(Context context) {
         super(context, "BlackNumber.db", null, 1);
     }
-
     //创建表
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -25,7 +23,6 @@ public class BlackNumberDBOpenHelper extends SQLiteOpenHelper {
                 +")");
 
     }
-
     //数据库升级
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

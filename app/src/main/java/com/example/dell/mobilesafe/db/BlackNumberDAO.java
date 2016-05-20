@@ -9,7 +9,6 @@ import com.example.dell.mobilesafe.bean.BlackNumberInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by Q on 2016/4/15.
  */
@@ -86,8 +85,8 @@ public class BlackNumberDAO {
     //部分加载,倒叙查询
     public List<BlackNumberInfo> queryPart(int dex) {
         List<BlackNumberInfo> infos = new ArrayList<BlackNumberInfo>();
-        Cursor cursor=db.rawQuery("select number,mode from black_number order by id desc limit 20 offset ?",new String[]{String.valueOf(dex)});//直接用SQL语句,limit第一次加载20条，
-        // 从第dex条开始加载，然后监听滑动到最后一条，再加载.desc倒序
+        Cursor cursor=db.rawQuery("select number,mode from black_number order by id desc limit 20 offset ?",new String[]{String.valueOf(dex)});
+        //直接用SQL语句,limit 20 ,每次加载20条， offset index每次从第 index开始加载,并且倒叙，这样最新添加的都可以限制到最前面，
         while (cursor.moveToNext()) {
             BlackNumberInfo info = new BlackNumberInfo();
             info.setNumber(cursor.getString(cursor.getColumnIndex("number")));

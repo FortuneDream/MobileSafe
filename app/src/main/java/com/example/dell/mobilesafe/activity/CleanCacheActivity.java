@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemClock;
@@ -29,13 +28,12 @@ import com.example.dell.mobilesafe.utils.LogUtil;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
-import java.util.concurrent.CancellationException;
 
 public class CleanCacheActivity extends AppCompatActivity {
 
     private static final int SCANNING = 0;
     private static final int OVER = 1;
-    private static final int APPCATION_INFO = 2;
+    private static final int APPLICATION_INFO = 2;
     private static final String TAG = "CleanCacheActivity";
     private TextView stateTxt;
     private ProgressBar cleanPrb;
@@ -51,7 +49,7 @@ public class CleanCacheActivity extends AppCompatActivity {
                 case OVER:
                     stateTxt.setText("扫描结束");
                     break;
-                case APPCATION_INFO:
+                case APPLICATION_INFO:
                     final CacheInfo cacheInfo = (CacheInfo) msg.obj;
                     View view = View.inflate(CleanCacheActivity.this, R.layout.item_app_cache, null);
                     ImageView ico = (ImageView) view.findViewById(R.id.ico_img);
@@ -171,7 +169,7 @@ public class CleanCacheActivity extends AppCompatActivity {
                     cacheInfo.name = pm.getApplicationInfo(pStats.packageName, 0).loadLabel(pm).toString();
                     cacheInfo.icon = pm.getApplicationInfo(pStats.packageName, 0).loadIcon(pm);
                     Message message = Message.obtain();
-                    message.what = APPCATION_INFO;
+                    message.what = APPLICATION_INFO;
                     message.obj = cacheInfo;
                     mHandler.sendMessage(message);
                 } catch (Exception e) {

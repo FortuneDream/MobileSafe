@@ -65,7 +65,7 @@ public class APPLockActivity extends AppCompatActivity implements View.OnClickLi
             } else {
                 unLockAppList.add(appInfo);
             }
-        }
+    }
         unLockAdapter = new ListAdapter(true);
         unLockLv.setAdapter(unLockAdapter);
         lockAdapter = new ListAdapter(false);

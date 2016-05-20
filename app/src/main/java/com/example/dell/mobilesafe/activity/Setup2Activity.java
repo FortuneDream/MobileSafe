@@ -38,7 +38,6 @@ public class Setup2Activity extends BaseSetupActivity {
             public void onClick(View v) {
                 //读取sim卡的串号
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-
                 //记得设置勾选状态
                 if (bindSimSiv.isChecked()) {
                     bindSimSiv.setChecked(false);
@@ -61,7 +60,6 @@ public class Setup2Activity extends BaseSetupActivity {
             return;
         }
         //必须要绑定了才进入下一步
-
         Intent intent = new Intent(this, Setup3Activity.class);
         startActivity(intent);
         finish();

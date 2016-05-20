@@ -12,6 +12,7 @@ import com.example.dell.mobilesafe.receiver.DeviceReceiver;
 public class LockScreenActivity extends AppCompatActivity {
     private DevicePolicyManager devicePolicyManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -27,7 +27,6 @@ public class CommonNumberQuery extends AppCompatActivity {
         expandableListView= (ExpandableListView) findViewById(R.id.elv_list);
     }
 
-
     private class CommonNumberQueryAdapter extends BaseExpandableListAdapter{
 
         //n个组

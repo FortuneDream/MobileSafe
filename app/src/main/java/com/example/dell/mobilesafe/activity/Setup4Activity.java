@@ -7,6 +7,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.example.dell.mobilesafe.R;
+import com.example.dell.mobilesafe.service.GPSService;
 
 public class Setup4Activity extends BaseSetupActivity {
     private CheckBox protectedCb;
@@ -14,7 +15,7 @@ public class Setup4Activity extends BaseSetupActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Boolean protecting=sharedPreferences.getBoolean("protecting", false);
-        final SharedPreferences.Editor editor =sharedPreferences.edit();
+
         setContentView(R.layout.activity_setup4);
         initView();
         if (protecting){
@@ -23,22 +24,26 @@ public class Setup4Activity extends BaseSetupActivity {
             protectedCb.setText("当前状态：手机防盗没有开启");
         }
         protectedCb.setChecked(protecting);
-        setListener(editor);
+        setListener();
     }
 
     private void initView() {
         protectedCb= (CheckBox) findViewById(R.id.cb_protected);
     }
 
-    private void setListener(final SharedPreferences.Editor editor) {
+    private void setListener() {
+        final SharedPreferences.Editor editor =sharedPreferences.edit();
         protectedCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Intent intent=new Intent(Setup4Activity.this, GPSService.class);
                 editor.putBoolean("protecting",isChecked);
                 if (isChecked){
                     protectedCb.setText("当前状态：手机防盗已经开启");
+                    startService(intent);
                 }else {
                     protectedCb.setText("当前状态：手机防盗没有开启");
+                    stopService(intent);
                 }
                 editor.apply();
             }

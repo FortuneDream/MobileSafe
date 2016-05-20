@@ -4,7 +4,6 @@
     android:installLocation="auto">
 
     <!-- 设置安装位置，内部还是外部，auto先内部，后外部 -->
-
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,11 +18,12 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <!--Google处于安全考虑已经废弃了获得Task信息的权限-->
     <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
     <!-- 需要变成系统应用,必须root，或者和手机厂合作，或者手机预装 -->
-    <uses-permission android:name="android.permission.DELETE_CACHE_FILES" />
-    <uses-permission android:name="android.permission.CLEAR_APP_USER_DATA" />
+    <!-- <uses-permission android:name="android.permission.DELETE_CACHE_FILES" /> -->
+    <!-- <uses-permission android:name="android.permission.CLEAR_APP_USER_DATA" /> -->
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -151,6 +151,11 @@
             android:configChanges="screenSize|keyboardHidden|orientation" />
         <!-- 横屏之后，不会再次执行onCreate方法 -->
         <activity android:name=".activity.CleanCacheActivity" />
+
+        <service
+            android:name=".service.SDCardService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

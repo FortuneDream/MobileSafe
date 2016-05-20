@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.example.dell.mobilesafe.R;
 import com.example.dell.mobilesafe.bean.TaskInfo;
 import com.example.dell.mobilesafe.engine.TaskInfoProvider;
+import com.example.dell.mobilesafe.utils.LogUtil;
 import com.example.dell.mobilesafe.utils.SystemInfoUtils;
 
 import java.util.ArrayList;
@@ -235,12 +236,12 @@ public class TaskManagerActivity extends AppCompatActivity {
         for (TaskInfo taskInfo : taskInfoList) {
             taskInfo.setChecked(!taskInfo.isChecked());
         }
-        adapter.notifyDataSetChanged();//getCount()->getView();
+        adapter.notifyDataSetChanged();
     }
 
     public void killAll(View view) {
         for (TaskInfo taskInfo : taskInfoList) {
-//            LogUtil.e(TAG, "TaskManagerActivity---killAll:  " + taskInfo.getPackageName());
+            LogUtil.e(TAG, "TaskManagerActivity---killAll:  " + taskInfo.getPackageName());
             if (taskInfo.isChecked()) {
                 am.killBackgroundProcesses(taskInfo.getPackageName());//杀死后台进程
             }

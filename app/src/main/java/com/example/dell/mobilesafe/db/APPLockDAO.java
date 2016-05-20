@@ -50,7 +50,6 @@ public class APPLockDAO {
         context.getContentResolver().notifyChange(uri,null);
     }
 
-
     //是否加锁
     public boolean query(String packageName) {
         boolean result = false;
@@ -61,7 +60,6 @@ public class APPLockDAO {
         cursor.close();
         return result;//返回true表示已找到
     }
-
 
     //得到所有的已加锁应用的包名
     public List<String> queryAll() {

@@ -23,17 +23,13 @@ public class TrafficManagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_traffic_manager);
         initView();
         //统计总流量的接口
-
         TrafficStats.getMobileRxBytes();//手机（2.2.5.3.4G的流量下载总和）
         TrafficStats.getMobileTxBytes();//上传总和
-
         TrafficStats.getTotalRxBytes();//手机+wifi下载流量总和
         TrafficStats.getTotalTxBytes();
-
         //TrafficStats.getUidRxBytes(int);//根据用户id得到下载流量
         //TrafficStats.getUidTxBytes(int);
         setListener();
-
     }
 
     private void setListener() {

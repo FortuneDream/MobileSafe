@@ -43,7 +43,6 @@ public class Setup1Activity extends BaseSetupActivity {
 
             }
         });
-        //实例化手势识别器
     }
 
     public void showNext() {

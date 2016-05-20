@@ -9,108 +9,114 @@
     <TextView
         style="@style/title_one"
         android:text="手机防盗" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:textSize="@dimen/text"
-            android:textColor="@color/text"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:text="安全号码"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="安全号码"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text" />
+
         <TextView
             android:id="@+id/txt_number"
-            android:layout_alignParentEnd="true"
-            android:textSize="@dimen/text"
-            android:textColor="@color/text"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:text="xxxx"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:text="xxxx"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text" />
     </RelativeLayout>
-    <View
-        style="@style/divider"/>
+
+    <View style="@style/divider" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <!--此TextView填充父窗体，使得整行生效-->
         <TextView
-            android:textSize="@dimen/text"
-            android:textColor="@color/text"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:text="防盗保护是否开启"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="防盗保护是否开启"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text" />
+
         <ImageView
             android:id="@+id/img_lock"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ico_release_lock"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ico_release_lock" />
     </RelativeLayout>
+
     <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:background="@color/divider"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"/>
+        android:background="@color/divider" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <!--此TextView填充父窗体，使得整行生效-->
         <TextView
-            android:background="@drawable/selector_shape"
-            android:onClick="reEnterSetting"
-            android:clickable="true"
-            android:textSize="@dimen/text"
-            android:textColor="@color/text"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:text="重新进入设置向导"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/selector_shape"
+            android:clickable="true"
+            android:onClick="reEnterSetting"
+            android:text="重新进入设置向导"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text" />
     </RelativeLayout>
+
     <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:background="@color/divider"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"/>
+        android:background="@color/divider" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:textSize="@dimen/text"
-            android:textColor="@color/text"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:text="功能简介"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="功能简介"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text" />
     </RelativeLayout>
-    <View
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/divider"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"/>
+
+    <View style="@style/divider" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/text"
         android:layout_margin="10dp"
-        android:text="当时手机丢失时，可用安全号码向本机发送以下短信内容，即可获得相应功能:"/>
+        android:text="当时手机丢失时，可用安全号码向本机发送以下短信内容，即可获得相应功能:"
+        android:textColor="@color/text" />
+
     <TextView
         style="@style/text_content_style"
         android:drawableStart="@android:drawable/star_big_on"

@@ -14,7 +14,6 @@ import java.io.PrintWriter;
  */
 //Manifest里面设置ApplicationName
 public class MyApplication extends Application {
-
     private static final String TAG = "MyApplication";
 
     //这是程序的入口，比任何组件被调用都要前

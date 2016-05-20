@@ -45,7 +45,6 @@ public class SelectContactActivity extends AppCompatActivity {
                 mHandler.sendEmptyMessage(0);
             }
         }.start();
-        //String里存的是键，int存的对应的控件id
         setListener();
     }
 

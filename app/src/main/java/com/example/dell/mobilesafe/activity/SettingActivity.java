@@ -30,7 +30,6 @@ public class SettingActivity extends AppCompatActivity {
         //boolean blackNumberService= ServiceStatesUtils.isRunningService(this,"com.example.dell.mobilesafe.service.CallSmsSafeService");//检测是否在运行,还有WatchDogService
         //interruptListItemView.setChecked(blackNumberService);
         watchDogIntent=new Intent(this,WatchDogService.class);
-
     }
 
     private void keepState() {

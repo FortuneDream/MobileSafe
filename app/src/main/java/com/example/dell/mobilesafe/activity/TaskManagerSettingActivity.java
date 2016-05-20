@@ -21,14 +21,18 @@ public class TaskManagerSettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_manager_setting);
         sharedPreferences=getSharedPreferences("config",MODE_PRIVATE);
         initView();
-        Boolean isHideSystem=sharedPreferences.getBoolean("hide_system",false);//勾选类控件，一定要用sp来保存状态
-        updateSiv.setChecked(isHideSystem);
-        Boolean isAutoKillProcess=sharedPreferences.getBoolean("auto_kill_process",false);
-        killProcessSiv.setChecked(isAutoKillProcess);
+        keepState();
         setListener();
         //添加ServiceStatusUtils.isRunningService判断进程是否运行,后修改siv的状态，因为可能被系统杀死
 
 
+    }
+
+    private void keepState() {
+        Boolean isHideSystem=sharedPreferences.getBoolean("hide_system",false);//勾选类控件，一定要用sp来保存状态
+        updateSiv.setChecked(isHideSystem);
+        Boolean isAutoKillProcess=sharedPreferences.getBoolean("auto_kill_process",false);
+        killProcessSiv.setChecked(isAutoKillProcess);
     }
 
     private void setListener() {
@@ -50,13 +54,12 @@ public class TaskManagerSettingActivity extends AppCompatActivity {
         killProcessSiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                killProcessIntent=new Intent(TaskManagerSettingActivity.this,KillProcessService.class);
                 if (killProcessSiv.isChecked()){
                     killProcessSiv.setChecked(false);
-                    killProcessIntent=new Intent(TaskManagerSettingActivity.this,KillProcessService.class);
-                    stopService(killProcessIntent=new Intent(TaskManagerSettingActivity.this,KillProcessService.class));//取消服务
+                    stopService(killProcessIntent);//取消服务
                 }else {
                     killProcessSiv.setChecked(true);
-                    killProcessIntent=new Intent(TaskManagerSettingActivity.this,KillProcessService.class);
                     startService(killProcessIntent);
                 }
                 SharedPreferences.Editor editor=sharedPreferences.edit();
