@@ -70,9 +70,6 @@ public class GPSService extends Service {
         }
     }
 
-    public GPSService() {
-    }
-
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.

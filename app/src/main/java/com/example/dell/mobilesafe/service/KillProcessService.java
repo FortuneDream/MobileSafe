@@ -19,10 +19,6 @@ public class KillProcessService extends Service {
     private ScreenReceiver screenReceiver;
     private Timer timer;
     private TimerTask timerTask;
-
-    public KillProcessService() {
-    }
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;

@@ -96,7 +96,6 @@ public class CallSmsSafeService extends Service {
             }
         }
     }
-
     //挂断电话，未完成
 //    public void endCall(){
 ////        IBinder b=ServiceManager.getService(TELEPHONY_SERVICE);

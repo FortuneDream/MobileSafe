@@ -27,7 +27,7 @@
             android:layout_marginEnd="10dp"
             android:text="剩余/总内存" />
     </RelativeLayout>
-    <!--当需要加载的时候，用真布局包裹list+progressdialog-->
+    <!--当需要加载的时候，用真布局包裹list+ProgressDialog-->
     <!--权重设置为1,使底下的反选，全选可以显示出来-->
     <FrameLayout
         android:layout_weight="1"

@@ -44,7 +44,6 @@ public class SDCardService extends Service {
         intentFilter.setPriority(1000);
         registerReceiver(sdCardReceiver, intentFilter);
     }
-
     class SDCardReceiver extends BroadcastReceiver {
 
         @Override

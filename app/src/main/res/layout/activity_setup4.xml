@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:src="@drawable/bg_shouji" />
-        <!--在backgroud中设置selector-->
+        <!--在background中设置selector-->
         <!--因为四个界面都是3个相同的下一步按钮，所以设置为样式-->
         <Button style="@style/button_pre_style" />
 
