@@ -84,6 +84,7 @@ protected void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstance
 	然后ListView加载完毕后，LinearLayout设置为invisible
 
 9.抽屉
+	DrawerLayout（第一个子View是主页，第二子View是抽屉）
 	
 
 10.
